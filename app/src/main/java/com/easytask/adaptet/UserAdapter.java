@@ -1,7 +1,6 @@
 package com.easytask.adaptet;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,7 @@ import com.easytask.modelo.User;
 
 import java.util.List;
 
-/**
- * Created by Sandy on 10/11/2014.
- */
+
 public class UserAdapter extends BaseAdapter {
 
     private Fragment fragment;

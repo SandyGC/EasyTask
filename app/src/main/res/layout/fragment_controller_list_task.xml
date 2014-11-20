@@ -1,0 +1,90 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gnotes.controller.ControllerListTaskFragment"
+    android:background="@color/shadow"
+    android:id="@+id/fragment_controller_list_task">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/gradien_shadow"
+            android:layout_margin="6dp"
+            android:id="@+id/linearLayout2">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="2dp"
+                android:background="@color/shadowLite">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dp"
+                    android:id="@+id/tittle_list"
+                    android:text="@string/tittle"
+                    android:textSize="30dp"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="20dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/listTask"
+            android:padding="5dp"
+            android:divider="@android:color/transparent"
+            android:background="@color/shadowLite"
+            android:layout_alignRight="@+id/linearLayout"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_above="@+id/linearLayout" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="6dp"
+            android:orientation="horizontal"
+            android:background="@drawable/gradien_shadow"
+            android:id="@+id/linearLayout">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="2dp"
+                android:orientation="horizontal"
+                android:background="@color/shadowLite">
+
+                <ImageView
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:id="@+id/listtask_img"
+                    android:background="@android:drawable/sym_def_app_icon"
+                    android:layout_marginRight="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:id="@+id/listTask_nombre"
+                    android:text="persona"
+                    android:inputType="text"
+                    android:textSize="26dp"
+                    android:capitalize="sentences"
+                    android:paddingLeft="5dp"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

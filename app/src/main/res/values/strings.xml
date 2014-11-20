@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EasyTask</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_share">Comparitr</string>
+    <string name="newTask">Nueva tarea</string>
+    <string name="info">Informacion</string>
+    <string name="puedenVer">Puden ver: </string>
+    <string name="change_language">Elige el idioma: </string>
+    <string name="orderShare">Tareas compartidas</string>
+    <string name="myTask">Mis tareas</string>
+    <string name="allTask">Todas</string>
+    <string name="tittle">Titulo</string>
+    <string name="botonInicio">INICIAR SESION</string>
+    <string name="botonRegistrar">REGISTRATE</string>
+    <string name="title_activity_controller_sign_in">ControllerSignIn</string>
+    <string name="textViewNombre">Introduce tu nombre:</string>
+    <string name="textViewNick">Introduce tu Nick Name:</string>
+    <string name="textViewEmail">Introduce tu email:</string>
+    <string name="textViewPass">Introduce tu contraseña:</string>
+    <string name="textViewInfoPass">Recuerda que la contraseña debe coincidir en los dos campos, tiene que tener
+    un maximo de 16 caracteres y mínimo de 8</string>
+    <string name="editTextNombre">Nombre</string>
+    <string name="editTextNick">Nick</string>
+    <string name="editTextEmail">email</string>
+    <string name="editTextPassword">**********</string>
+    <string name="buttonNext">Siguiente</string>
+    <string name="buttonAceptar">Aceptar</string>
+    <string name="title_activity_controller_mostrar_usuario">ControllerMostrarUsuario</string>
+    <string name="btEdit">Editar</string>
+    <string name="btSave">Guardar</string>
+    <string name="title_activity_controller_lista_task">ControllerListaTask</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_controller_list_left">ControllerListLeft</string>
+    <string name="perfil_navigator">Perfil</string>
+    <string name="listas_navigator">Listas de tareas</string>
+    <string name="configuracion_navigator">Configuracion</string>
+
+    <!-- Lista de iconos de navegacion -->
+    <array name="navigation__iconos">
+        <item>@android:drawable/ic_menu_view</item>
+        <item>@android:drawable/checkbox_on_background</item>
+        <item>@android:drawable/ic_menu_preferences</item>
+    </array>
+
+    <string name="title_activity_controller_list_task">ControllerListTask</string>
+    <string name="title_activity_controller_profile">Mi Perfil</string>
+    <string name="title_activity_controller_vista_inicio">ControllerVistaInicio</string>
+    <string name="title_activity_controller_sing_in">ControllerSingIn</string>
+    <string name="title_activity_controller_sing_in_password">ControllerSingInPassword</string>
+    <string name="tittle_controller_data_user">Perfil</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

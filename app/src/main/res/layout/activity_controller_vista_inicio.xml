@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    tools:context=".Principal"
+    android:orientation="vertical"
+    android:background="@drawable/fondoinicioapp">
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:id="@+id/button_iniciar"
+        android:layout_above="@+id/button_registrar"
+        android:layout_alignParentLeft="true"
+        android:text="@string/botonInicio"
+        android:textColor="@color/colorLetra"
+        android:background="@drawable/buttonpurple"
+        />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:id="@+id/button_registrar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/botonRegistrar"
+        android:textColor="@color/colorLetra"
+        android:onClick="startActivitySingIn"
+        android:background="@drawable/buttongreen"/>
+
+
+</RelativeLayout>

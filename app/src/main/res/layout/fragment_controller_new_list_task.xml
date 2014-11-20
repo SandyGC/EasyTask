@@ -1,0 +1,73 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.easytask.controller.ControllerNewListTaskFragmet">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linearLayoutTittle">
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:hint="@string/tittle"
+                android:textStyle="bold"
+                android:textColor="@color/darckGray"
+                android:id="@+id/title_listTask"
+                android:capitalize="sentences"
+                android:textSize="24dp"/>
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxNewTask"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="left|center"
+                android:alpha="0.8"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="58dp"
+                android:id="@+id/editTextNewTask"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:text="Listo"
+                android:id="@+id/buttonListo"
+               />
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewNewTask"
+            android:scrollbars="vertical"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/linearLayout"
+            android:layout_below="@+id/linearLayoutTittle" />
+    </RelativeLayout>
+</FrameLayout>

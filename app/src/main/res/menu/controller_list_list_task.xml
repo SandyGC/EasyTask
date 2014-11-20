@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ControllerListListTask">
+    <item android:id="@+id/newListTask"
+        android:title="@string/newTask"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_add"/>
+
+    <item android:id="@+id/orderShare"
+        android:title="@string/orderShare"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
+
+    <item android:id="@+id/orderMyTask"
+        android:title="@string/myTask"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
+
+    <item android:id="@+id/allTask"
+        android:title="@string/allTask"
+        android:orderInCategory="100"
+        android:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,106 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.easytask.controller.ControllerSingIn"
+    android:background="@drawable/fondopantalla1"
+    >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayoutNombre"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        >
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textViewNombre"
+            android:id="@+id/textViewSingInNombre"
+            android:textColor="@color/colorLetra" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:hint="@string/editTextNombre"
+            android:ems="10"
+            android:id="@+id/editTextSingInNombre" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:id="@+id/linearLayoutEmail"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayoutNombre"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textViewNick"
+            android:id="@+id/textViewSingInNick"
+            android:textColor="@color/colorLetra" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:hint="@string/editTextNick"
+            android:ems="10"
+            android:id="@+id/editTextSingInNick"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:id="@+id/linearLayoutNick"
+        android:layout_below="@+id/linearLayoutEmail"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textViewEmail"
+            android:id="@+id/textViewSingInEmail"
+            android:textColor="@color/colorLetra" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:inputType="textEmailAddress"
+            android:hint="@string/editTextEmail"
+            android:ems="10"
+            android:id="@+id/editTextSingInEmail" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="500dp"
+        android:layout_height="70dp"
+        android:text="@string/buttonNext"
+        android:textColor="@color/colorLetra"
+        android:id="@+id/buttonSingInNext"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/linearLayoutNick"
+        android:onClick="next"
+        android:background="@drawable/buttongreen"/>
+
+
+</RelativeLayout>

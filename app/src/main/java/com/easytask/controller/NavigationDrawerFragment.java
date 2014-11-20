@@ -295,32 +295,6 @@ public class NavigationDrawerFragment extends Fragment {
 
 
 
- /*   public void putFragment(int position) {
-
-        Fragment fragment = null;
-
-        switch (position) {
-            case 1:
-
-                break;
-
-            case 2:
-                fragment = new ControllerListListTaskFragment().newInstance(position);
-
-                break;
-            case 3:
-
-                break;
-            default:
-                fragment = new ControllerListListTaskFragment().newInstance(position);
-                break;
-
-        }
-
-        commitFragment(fragment);
-
-    }*/
-
     public void commitFragment(Fragment fragment){
         if (fragment != null){
 

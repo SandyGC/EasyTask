@@ -1,6 +1,7 @@
 package com.easytask.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -104,12 +105,6 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         return v;
     }
 
- /*   // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -232,6 +227,7 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
                 }else{
                     updateListTask(listTasks);
                 }
+                onFragmentInteraction(null, 1);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -297,9 +293,23 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
     @Override
     public void onFragmentInteraction(Object o, int number) {
 
-        Fragment fragment = new ControllerShareUsersFragment().newInstance();
-
+        Fragment fragment;
         android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+        Bundle bundle = new Bundle();
+        switch (number){
+            case 0:
+                 fragment = new ControllerShareUsersFragment().newInstance();
+
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+                break;
+            case 1:
+                bundle.putParcelable("usuario", user);
+                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+                break;
+
+        }
     }
+
+
 }

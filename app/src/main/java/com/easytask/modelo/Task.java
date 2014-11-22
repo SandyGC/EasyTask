@@ -3,8 +3,6 @@ package com.easytask.modelo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by Sandy on 12/10/2014.
  */

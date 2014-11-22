@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -91,6 +92,7 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
             textViewTittle = (TextView) v.findViewById(R.id.tittle_list);
             textViewUser = (TextView) v.findViewById(R.id.listTask_nombre);
             listTaskView = (ListView) v.findViewById(R.id.listTask);
+
         }
 
         //Modifico las opciones de menu para que se infle otro layout
@@ -245,4 +247,12 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
     }
+
+    /**
+     * Called when the fragment is visible to the user and actively running.
+     * This is generally
+     * tied to {@link android.app.Activity#onResume() Activity.onResume} of the containing
+     * Activity's lifecycle.
+     */
+
 }

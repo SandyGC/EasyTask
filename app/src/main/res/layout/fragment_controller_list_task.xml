@@ -45,7 +45,8 @@
             android:background="@color/shadowLite"
             android:layout_alignRight="@+id/linearLayout"
             android:layout_below="@+id/linearLayout2"
-            android:layout_above="@+id/linearLayout" />
+            android:layout_above="@+id/linearLayout"
+            />
 
         <LinearLayout
             android:layout_width="fill_parent"

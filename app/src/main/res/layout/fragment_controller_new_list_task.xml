@@ -48,7 +48,12 @@
                 android:layout_height="58dp"
                 android:id="@+id/editTextNewTask"
                 android:layout_marginRight="10dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1">
+                <requestFocus />
+                </EditText>
+
+
+                />
 
             <Button
                 style="?android:attr/buttonStyleSmall"

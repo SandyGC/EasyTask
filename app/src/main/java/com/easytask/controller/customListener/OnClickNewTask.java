@@ -21,6 +21,8 @@ public class OnClickNewTask implements View.OnClickListener {
         editText = (EditText) controllerNewListTaskFragmet.getView().findViewById(R.id.editTextNewTask);
         checkBox = (CheckBox) controllerNewListTaskFragmet.getView().findViewById(R.id.checkBoxNewTask);
         this.controllerNewListTaskFragmet = controllerNewListTaskFragmet;
+        editText.requestFocus();
+
     }
 
     @Override
@@ -34,4 +36,5 @@ public class OnClickNewTask implements View.OnClickListener {
         editText.setText("");
         checkBox.setChecked(false);
     }
+
 }

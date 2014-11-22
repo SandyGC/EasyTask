@@ -30,6 +30,21 @@ public class ControllerSingIn extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controller_sing_in);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         textViewname = (EditText) findViewById(R.id.editTextSingInNombre);
         textViewnick = (EditText) findViewById(R.id.editTextSingInNick);
         textViewemail = (EditText) findViewById(R.id.editTextSingInEmail);

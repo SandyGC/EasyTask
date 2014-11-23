@@ -149,14 +149,15 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         valuesListTask.putNull("id_List");
         valuesListTask.put("titleList", object.getTitle());
         valuesListTask.put("dateList", object.getDateList());
-        valuesListTask.put("status_share", object.getStatus());
+        valuesListTask.put("status_share", object.getStatus_share());
         valuesListTask.put("status", object.getStatusList().toString());
+
         if (object.getGroup() != null) {
             valuesListTask.put("id_Group", object.getGroup().getIdGroup());
         } else {
             valuesListTask.putNull("id_Group");
         }
-
+        valuesListTask.put("status_server", object.getStatus_server());
         valuesListTask.put("id_User", object.getUser().getIdUser());
 
         int idListTask = (int) sqdb.insert("LISTTASKS", null, valuesListTask);
@@ -184,9 +185,10 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         ContentValues contentValues = new ContentValues();
         contentValues.put("titleList", object.getTitle());
         contentValues.put("dateList", object.getDateList());
-        contentValues.put("status_share", object.getStatus());
+        contentValues.put("status_share", object.getStatus_share());
         contentValues.put("status", object.getStatusList().toString());
         contentValues.put("id_UnicoL", object.getId_UnicoL());
+        contentValues.put("status_server", object.getStatus_server());
         int numColums = sqdb.update("LISTTASKS", contentValues, "id_List = " + object.getIdListTask(), null);
 
         if (numColums == 0) {
@@ -223,10 +225,12 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         if (cursor.moveToFirst()) {
             do {
 
+
                 int idListTask = cursor.getInt(0);
                 String tittle = cursor.getString(1);
                 String dateList = cursor.getString(2);
                 int status = cursor.getInt(3);
+
 
                 String id_unicoG = cursor.getString(5);
                 int idGroup = cursor.getInt(6);
@@ -236,10 +240,11 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
 
                 }
                 int idUser = cursor.getInt(7);
+                int statusServer = cursor.getInt(8);
                 User user = userDataBase.read(idUser);
 
                 //Se coruye el objet ListTask y se le modifica el grupo sea null o no
-                ListTasks listTasks = new ListTasks(idListTask, tittle, dateList, status, StatusList.Creada, id_unicoG, user);
+                ListTasks listTasks = new ListTasks(idListTask, tittle, dateList, status, StatusList.Creada, id_unicoG, user, statusServer);
                 listTasks.setGroup(group);
 
                 List<Task> tasks = taskDataBase.getAllFromListTask(listTasks);

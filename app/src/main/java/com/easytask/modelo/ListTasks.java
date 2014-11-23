@@ -32,32 +32,36 @@ public class ListTasks implements Parcelable {
     private int idListTask;
     private String title;
     private String dateList;
-    private int status;
+    private int status_share;
     private StatusList statusList;
     private String id_UnicoL;
+    private int status_server;
 
     private User user;
     private Group group;
     private List<Task> Tasks;
 
-    public ListTasks(int idListTask, String title, String dateList, int status, StatusList statusList, String id_UnicoL, User user) {
+    public ListTasks(int idListTask, String title, String dateList, int status_share, StatusList statusList, String id_UnicoL, User user, int status_server) {
         this.idListTask = idListTask;
         this.title = title;
         this.dateList = dateList;
-        this.status = status;
+        this.status_share = status_share;
         this.statusList = statusList;
         this.id_UnicoL = id_UnicoL;
+        this.status_server = status_server;
         this.user = user;
         Tasks = new ArrayList<Task>();
+
     }
 
 
-    public ListTasks(String title, String dateList, int status, StatusList statusList, User user) {
+    public ListTasks(String title, String dateList, int status_share, StatusList statusList, User user, int status_server) {
 
         this.title = title;
         this.dateList = dateList;
-        this.status = status;
+        this.status_share = status_share;
         this.statusList = statusList;
+        this.status_server = status_server;
         this.user = user;
         Tasks = new ArrayList<Task>();
     }
@@ -91,12 +95,12 @@ public class ListTasks implements Parcelable {
         this.dateList = dateList;
     }
 
-    public int getStatus() {
-        return status;
+    public int getStatus_share() {
+        return status_share;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setStatus_share(int status_share) {
+        this.status_share = status_share;
     }
 
     public StatusList getStatusList() {
@@ -158,6 +162,14 @@ public class ListTasks implements Parcelable {
         this.id_UnicoL = id_UnicoL;
     }
 
+    public int getStatus_server() {
+        return status_server;
+    }
+
+    public void setStatus_server(int status_server) {
+        this.status_server = status_server;
+    }
+
     /**
      * Describe the kinds of special objects contained in this Parcelable's
      * marshalled representation.
@@ -183,9 +195,11 @@ public class ListTasks implements Parcelable {
         out.writeInt(this.idListTask);
         out.writeString(this.title);
         out.writeString(this.dateList);
-        out.writeInt(this.status);
+        out.writeInt(this.status_share);
+        out.writeInt(this.status_server);
         out.writeParcelable(this.user, flags);
         //   out.writeTypedList(this.Tasks);
+
 
     }
 
@@ -193,7 +207,8 @@ public class ListTasks implements Parcelable {
         this.idListTask = in.readInt();
         this.title = in.readString();
         this.dateList = in.readString();
-        this.status = in.readInt();
+        this.status_share = in.readInt();
+        this.status_server = in.readInt();
         this.user = in.readParcelable(User.class.getClassLoader());
         //   in.readTypedList(this.Tasks, Task.CREATOR);
     }

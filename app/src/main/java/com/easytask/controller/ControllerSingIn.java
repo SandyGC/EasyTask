@@ -17,7 +17,10 @@
 package com.easytask.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +32,9 @@ import com.easytask.R;
 import com.easytask.controller.asyncTask.CheckData;
 import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
+import com.google.android.gms.fitness.data.Value;
+
+import java.io.IOException;
 
 public class ControllerSingIn extends Activity {
 
@@ -131,20 +137,65 @@ public class ControllerSingIn extends Activity {
      * @param v
      */
     public void next(View v) {
+        //comprobar conexion internet
+        if (verificaConexion(v.getContext()) && executeCammand()) {
+            User user = validateFields();
 
-        User user = validateFields();
+            if (user != null) {
 
-        if (user != null) {
+                /**
+                 * Instancia de la tarea asincronica
+                 */
 
-            /**
-             * Instancia de la tarea asincronica
-             */
+                CheckData cheakData = new CheckData(v.getContext(), this, user);
+                cheakData.execute();
+            }
 
-            CheckData cheakData = new CheckData(v.getContext(), this, user);
-            cheakData.execute();
+        } else {
+
+            Toast conection = Toast.makeText(this, "No hay internet", Toast.LENGTH_LONG);
+            conection.show();
         }
+
     }
 
+    public static boolean verificaConexion(Context ctx) {
+        boolean bConectado = false;
+        ConnectivityManager connec = (ConnectivityManager) ctx
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        // No solo wifi, tambien GPRS
+        NetworkInfo[] redes = connec.getAllNetworkInfo();
+        // este bucle deberia no ser tan nyapa
+        for (int i = 0; i < 2; i++) {
+            // Tenemos conexion? ponemos a true
+            if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
+                bConectado = true;
+            }
+        }
+        return bConectado;
+    }
+
+    private boolean executeCammand() {
+        System.out.println(" executeCammand");
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process mIpAddrProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int mExitValue = mIpAddrProcess.waitFor();
+            System.out.println(" mExitValue " + mExitValue);
+            if (mExitValue == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (InterruptedException ignore) {
+            ignore.printStackTrace();
+            System.out.println(" Exception:" + ignore);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println(" Exception:" + e);
+        }
+        return false;
+    }
 
     public void intentPassword(User user) {
         intentUserPassword = new Intent(this, ControllerSingInPassword.class);

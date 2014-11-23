@@ -65,7 +65,8 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "status TEXT NOT NULL," +
             "id_UnicoL TEXT UNIQUE," +
             "id_Group INTEGER ," +
-            "id_User INTEGER , " +
+            "id_User INTEGER NOT NULL, " +
+            "status_server INTEGER NOT NULL," +
             "FOREIGN KEY (id_Group) REFERENCES GROUPS (id_Group)," +
             "FOREIGN KEY (id_User) REFERENCES USERS (id_User))";
 

@@ -199,7 +199,7 @@ public class User implements Parcelable {
      * @param listTasks
      */
     public void shareOk(ListTasks listTasks) {
-        listTasks.setStatus(1);
+        listTasks.setStatus_share(1);
     }
 
     /**

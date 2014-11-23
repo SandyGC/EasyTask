@@ -133,8 +133,9 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
             String tittleListTask = editText.getText().toString().trim();
             String date = getDateTime();
             int status = 0;
+            int statusServer = 0;
             StatusList statusList = StatusList.Creada;
-            listTasks = new ListTasks(tittleListTask, date, status, statusList, this.user);
+            listTasks = new ListTasks(tittleListTask, date, status, statusList, this.user, statusServer);
         }
 
         listTasks.setUser(user);

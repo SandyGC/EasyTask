@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller.customListener;
 
 import android.graphics.Color;
@@ -15,8 +31,8 @@ import com.easytask.modelo.Task;
  */
 public class OnClickCheckBox implements View.OnClickListener {
 
-    private static final int DONE =1;
-    private static final int NO_DONE =0;
+    private static final int DONE = 1;
+    private static final int NO_DONE = 0;
 
     public CheckBox checkBoxTask;
     private TextView textView;
@@ -37,8 +53,8 @@ public class OnClickCheckBox implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-        if (checkBoxTask.isChecked()){
-            Log.d("--------------","Echa");
+        if (checkBoxTask.isChecked()) {
+            Log.d("--------------", "Echa");
             task.setTaskDone(DONE);
             textView.setTextColor(Color.GRAY);
             try {
@@ -46,8 +62,8 @@ public class OnClickCheckBox implements View.OnClickListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
-            Log.d("--------------","no echa");
+        } else {
+            Log.d("--------------", "no echa");
             task.setTaskDone(NO_DONE);
             textView.setTextColor(Color.BLACK);
             try {

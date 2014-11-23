@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller;
 
 import android.app.Activity;
@@ -14,11 +30,13 @@ import com.easytask.R;
 import com.easytask.controller.asyncTask.CheckData;
 import com.easytask.controller.asyncTask.SingIn;
 import com.easytask.modelo.User;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 public class ControllerSingInPassword extends Activity {
 
-    private static  final String TAG ="com.controller.ControllerSingInPassword";
-
+    private static final String TAG = "com.controller.ControllerSingInPassword";
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final int MAX_LENTH_PASS = 2;
 
     private EditText editTextPass1, editTextPass2;
@@ -64,7 +82,7 @@ public class ControllerSingInPassword extends Activity {
 
             if (paswor1.equals(paswor2)) {
 
-                SingIn singIn = new SingIn(v.getContext(),this,user,paswor1);
+                SingIn singIn = new SingIn(v.getContext(), this, user, paswor1);
                 singIn.execute();
 
             } else {
@@ -78,12 +96,32 @@ public class ControllerSingInPassword extends Activity {
     }
 
     public void startApp(User user) {
-        Intent controllerListListTask = new Intent(this,ControllerListListTask.class);
+        Intent controllerListListTask = new Intent(this, ControllerListListTask.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable("usuario",user);
-        Log.d(TAG,user.getPasswordUser());
+        bundle.putParcelable("usuario", user);
+        Log.d(TAG, user.getPasswordUser());
         controllerListListTask.putExtras(bundle);
         startActivity(controllerListListTask);
         this.finish();
+    }
+
+    /**
+     * Metodo que comprueba que google play services este instalado en el movil
+     *
+     * @return
+     */
+    public boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i(TAG, "Dispositivo no soportado.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 }

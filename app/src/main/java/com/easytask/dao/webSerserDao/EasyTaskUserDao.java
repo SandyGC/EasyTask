@@ -11,7 +11,8 @@ import java.util.List;
 public class EasyTaskUserDao implements IUserDao {
     @Override
     public User insert(User object) throws Exception {
-        return null;
+
+        return object;
     }
 
     @Override

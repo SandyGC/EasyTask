@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.adaptet;
 
 import android.app.Fragment;
@@ -16,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by danny on 30/10/14.
+ * Created by sandy on 30/10/14.
  */
 public class ListTaskAdapter extends BaseAdapter {
 
@@ -94,17 +110,17 @@ public class ListTaskAdapter extends BaseAdapter {
 
         ListTaskHolder listTaskHolder = null;
 
-        ListTasks listTasks= (ListTasks) getItem(position);
+        ListTasks listTasks = (ListTasks) getItem(position);
 
-        if (v == null){
+        if (v == null) {
 
-            v= inflater.inflate(R.layout.item_list_task, null);
+            v = inflater.inflate(R.layout.item_list_task, null);
 
             listTaskHolder = new ListTaskHolder(v);
 
             v.setTag(listTaskHolder);
 
-        }else{
+        } else {
 
             listTaskHolder = (ListTaskHolder) v.getTag();
 

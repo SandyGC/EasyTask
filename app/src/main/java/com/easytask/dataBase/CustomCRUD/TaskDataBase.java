@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.dataBase.CustomCRUD;
 
 import android.content.ContentValues;
@@ -14,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by danny on 3/11/14.
+ * Created by sandy on 3/11/14.
  */
 public class TaskDataBase implements CRUD<Task> {
 
@@ -36,8 +52,8 @@ public class TaskDataBase implements CRUD<Task> {
 
         ContentValues contentValues = new ContentValues();
         contentValues.putNull("id_Task");
-        contentValues.put("realized",object.getTaskDone());
-        contentValues.put("tittle",object.getTittle());
+        contentValues.put("realized", object.getTaskDone());
+        contentValues.put("tittle", object.getTittle());
         contentValues.put("idList", object.getListTasks().getIdListTask());
         int id_Task = (int) sqdb.insert("TASKS", null, contentValues);
         object.setIdTask(id_Task);
@@ -53,10 +69,10 @@ public class TaskDataBase implements CRUD<Task> {
     public boolean update(Task object) throws Exception {
         ContentValues contentValues = new ContentValues();
         contentValues.put("realized", object.getTaskDone());
-        int numCols = sqdb.update("TASKS",contentValues,"id_Task = "+object.getIdTask(), null);
-        if (numCols == 0){
+        int numCols = sqdb.update("TASKS", contentValues, "id_Task = " + object.getIdTask(), null);
+        if (numCols == 0) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -73,6 +89,7 @@ public class TaskDataBase implements CRUD<Task> {
 
     /**
      * Metodo que recuperara todas la tareas a partir de un id de lista de tareas.
+     *
      * @param listTasks objeto del que ebtendra el id.
      * @return List con todos los capos TASK dentro.
      * @throws Exception
@@ -83,17 +100,17 @@ public class TaskDataBase implements CRUD<Task> {
 
         Cursor cursor = sqdb.rawQuery("SELECT * FROM TASKS WHERE idList = " + listTasks.getIdListTask(), null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
 
             do {
                 int idTask = cursor.getInt(0);
                 int taskDone = cursor.getInt(1);
                 String tittle = cursor.getString(2);
-                Task task = new Task(idTask,taskDone,listTasks,tittle);
+                Task task = new Task(idTask, taskDone, listTasks, tittle);
 
                 listTask.add(task);
 
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         return listTask;

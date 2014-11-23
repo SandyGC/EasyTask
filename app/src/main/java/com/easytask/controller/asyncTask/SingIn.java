@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller.asyncTask;
 
 import android.app.ProgressDialog;
@@ -6,12 +22,17 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.easytask.controller.ControllerSingInPassword;
+import com.easytask.dao.InterfacesDAO.IUserDao;
+import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.io.IOException;
 
 /**
- * Created by danny on 31/10/14.
+ * Created by sandy on 31/10/14.
  */
 public class SingIn extends AsyncTask {
 
@@ -22,9 +43,12 @@ public class SingIn extends AsyncTask {
     private String password;
     private ProgressDialog progresDialog;
     private User user;
-    //
+    private GoogleCloudMessaging gcm;
+    private String regid;
+    String SENDER_ID = "643243620549";
     private UserDataBase insertUser;
     private ListTaskDataBase listTaskDataBase;
+    private IUserDao daoUser;
 
     public SingIn(Context context, ControllerSingInPassword controllerSingInPassword, User user, String password) {
         this.context = context;
@@ -32,6 +56,11 @@ public class SingIn extends AsyncTask {
         this.password = password;
         this.user = user;
         progresDialog = new ProgressDialog(context, ProgressDialog.STYLE_SPINNER);
+        try {
+            daoUser = GestorFactoryDAO.getInstance().getFactory().getIUserDao();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -49,12 +78,16 @@ public class SingIn extends AsyncTask {
         try {
             Thread.sleep(5000);
             user.setPasswordUser(password);
-            Log.d(TAG, user.getNameUser());
-            Log.d(TAG, user.getPasswordUser());
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        saveUserLocal(user);
+
+        try {
+            idGCM();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return user;
     }
 
@@ -79,16 +112,42 @@ public class SingIn extends AsyncTask {
 
         insertUser = new UserDataBase(context);
         listTaskDataBase = new ListTaskDataBase(context);
-
         //inserto el usuario en la base de datos
         try {
-            insertUser.insert(user);
+            User u = insertUser.insert(user);
 //            listTaskDataBase.datosEjemlo();
-            listTaskDataBase.insertAllList(user.getListListTask());
+            Log.d("nombre usuario", u.getNameUser());
+            Log.d("id gcm local: ", u.getIdUserGCM());
+            if (user.getListListTask().size() > 0) {
+                listTaskDataBase.insertAllList(user.getListListTask());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void idGCM() throws IOException {
+
+
+        gcm = GoogleCloudMessaging.getInstance(context);
+
+        //obtenemos el registration id guardado
+        regid = gcm.register(SENDER_ID);
+        Log.d(TAG, "Registrado en GCM: registration_id=" + regid);
+        user.setIdUserGCM(regid);
+        //registro en el servidor
+
+        try {
+            daoUser.insert(user);
+            Log.d("Usuario registrado en el servidor :", user.getNameUser());
+            //lo meto en local
+            saveUserLocal(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
+
+
 }

@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller;
 
 
@@ -203,11 +219,6 @@ public class NavigationDrawerFragment extends Fragment {
                     sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
 
 
-
-
-
-
-
                 }
 
                 getActivity().invalidateOptionsMenu(); // calls onPrepareOptionsMenu()
@@ -234,7 +245,7 @@ public class NavigationDrawerFragment extends Fragment {
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
         if (mDrawerListView != null) {
-           mDrawerListView.setItemChecked(position, true);
+            mDrawerListView.setItemChecked(position, true);
         }
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(mFragmentContainerView);
@@ -242,7 +253,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
-       // putFragment(position);
+        // putFragment(position);
     }
 
     @Override
@@ -311,12 +322,11 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
 
-
-    public void commitFragment(Fragment fragment){
-        if (fragment != null){
+    public void commitFragment(Fragment fragment) {
+        if (fragment != null) {
 
             android.app.FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.container,fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
         }
     }
 

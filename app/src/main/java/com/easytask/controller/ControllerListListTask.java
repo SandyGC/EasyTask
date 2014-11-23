@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller;
 
 import android.app.ActionBar;
@@ -87,10 +103,10 @@ public class ControllerListListTask extends Activity
 
             android.app.FragmentManager fragmentManager = getFragmentManager();
 
-            if (fragment instanceof ControllerListListTaskFragment){
-                fragmentManager.beginTransaction().replace(R.id.container,fragment).commit();
-            }else{
-                fragmentManager.beginTransaction().replace(R.id.container,fragment).addToBackStack(null).commit();
+            if (fragment instanceof ControllerListListTaskFragment) {
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+            } else {
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
             }
 
 
@@ -137,12 +153,12 @@ public class ControllerListListTask extends Activity
     public void onFragmentInteraction(Object o, int number) {
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("user",this.user);
+        bundle.putParcelable("user", this.user);
 
         Fragment fragment = new ControllerNewListTaskFragmet().newInstance(bundle);
 
         android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container,fragment).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
     }
 
     /**

@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller;
 
 import android.app.Activity;
@@ -222,9 +238,9 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
                 onFragmentInteraction(null, 0);
                 break;
             case R.id.action_save:
-                if  (listTasks.getTasks().size() == 0){
+                if (listTasks.getTasks().size() == 0) {
                     saveListTask(listTasks);
-                }else{
+                } else {
                     updateListTask(listTasks);
                 }
                 onFragmentInteraction(null, 1);
@@ -251,10 +267,10 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         return this.listTasks;
     }
 
-    public void updateListTask(ListTasks listTasks){
+    public void updateListTask(ListTasks listTasks) {
         listTasks.setTitle(editText.getText().toString().trim());
         try {
-           listTaskDataBase.update(listTasks);
+            listTaskDataBase.update(listTasks);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -296,21 +312,20 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         Fragment fragment;
         android.app.FragmentManager fragmentManager = getFragmentManager();
         Bundle bundle = new Bundle();
-        switch (number){
+        switch (number) {
             case 0:
-                 fragment = new ControllerShareUsersFragment().newInstance();
+                fragment = new ControllerShareUsersFragment().newInstance();
 
                 fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
                 break;
             case 1:
                 bundle.putParcelable("usuario", user);
-                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
+                fragment = new ControllerListListTaskFragment().newInstance(bundle);
                 fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
                 break;
 
         }
     }
-
 
 
 }

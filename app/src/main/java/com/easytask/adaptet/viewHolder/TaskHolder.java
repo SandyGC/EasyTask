@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.adaptet.viewHolder;
 
 import android.graphics.Color;
@@ -17,7 +33,7 @@ public class TaskHolder extends ViewBaseHolder {
     private CheckBox checkBoxTask;
     private TextView textView;
     private OnClickCheckBox onClickCheckBox;
-  //  private Task task;
+    //  private Task task;
 
     public TaskHolder(View v, Task task) {
         getContentView(v);
@@ -36,10 +52,10 @@ public class TaskHolder extends ViewBaseHolder {
     public void setContentView(Object o) {
         super.setContentView(o);
         Task task = (Task) o;
-        if (task.getTaskDone() == 0){
+        if (task.getTaskDone() == 0) {
             checkBoxTask.setChecked(false);
             textView.setTextColor(Color.BLACK);
-        }else{
+        } else {
             checkBoxTask.setChecked(true);
             textView.setTextColor(Color.GRAY);
         }

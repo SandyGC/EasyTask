@@ -1,3 +1,19 @@
+
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 package com.easytask.controller;
 
 import android.app.Activity;
@@ -30,21 +46,6 @@ public class ControllerSingIn extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controller_sing_in);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         textViewname = (EditText) findViewById(R.id.editTextSingInNombre);
         textViewnick = (EditText) findViewById(R.id.editTextSingInNick);
         textViewemail = (EditText) findViewById(R.id.editTextSingInEmail);
@@ -55,7 +56,7 @@ public class ControllerSingIn extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-       // getMenuInflater().inflate(R.menu.controller_sing_in, menu);
+        // getMenuInflater().inflate(R.menu.controller_sing_in, menu);
         return true;
     }
 
@@ -64,14 +65,14 @@ public class ControllerSingIn extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-       // int id = item.getItemId();
-       // if (id == R.id.action_settings) {
-       //     return true;
-       // }
+        // int id = item.getItemId();
+        // if (id == R.id.action_settings) {
+        //     return true;
+        // }
         return super.onOptionsItemSelected(item);
     }
 
-    public User validateFields(){
+    public User validateFields() {
 
         String name = textViewname.getText().toString().trim();
         String email = textViewemail.getText().toString().trim();
@@ -81,25 +82,25 @@ public class ControllerSingIn extends Activity {
         if (name.equals("")) {
             Toast toastName = Toast.makeText(this, "El nombre no puede ser vacío", Toast.LENGTH_LONG);
             toastName.show();
-           // txtNombre.setBackgroundColor(Color.RED);
+            // txtNombre.setBackgroundColor(Color.RED);
             return null;
         } else if (nick.equals("")) {
             Toast toastNick = Toast.makeText(this, "El Nick no puede ser vacío", Toast.LENGTH_LONG);
             toastNick.show();
-          //  txtNick.setBackgroundColor(Color.RED);
+            //  txtNick.setBackgroundColor(Color.RED);
             return null;
 
         } else if (email.equals("")) {
             Toast toastEmail = Toast.makeText(this, "Email no puede estar vacio", Toast.LENGTH_LONG);
             toastEmail.show();
-          //  txtEmail.setBackgroundColor(Color.RED);
+            //  txtEmail.setBackgroundColor(Color.RED);
             return null;
 
 
         } else if (checkValidEmail(email) == false) {
             Toast toastEmail = Toast.makeText(this, "El email es incorrecto", Toast.LENGTH_LONG);
             toastEmail.show();
-          //  txtEmail.setBackgroundColor(Color.RED);
+            //  txtEmail.setBackgroundColor(Color.RED);
             return null;
         } else {
             //construyo el usuario con los datos introducidos sin contraseña
@@ -145,8 +146,8 @@ public class ControllerSingIn extends Activity {
     }
 
 
-    public void intentPassword(User user){
-        intentUserPassword = new Intent(this,ControllerSingInPassword.class);
+    public void intentPassword(User user) {
+        intentUserPassword = new Intent(this, ControllerSingInPassword.class);
         Bundle b = new Bundle();
         b.putParcelable("usuario", user);
         intentUserPassword.putExtras(b);
@@ -157,7 +158,7 @@ public class ControllerSingIn extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i= new Intent(this,ControllerVistaInicio.class);
+        Intent i = new Intent(this, ControllerVistaInicio.class);
         startActivity(i);
         this.finish();
     }

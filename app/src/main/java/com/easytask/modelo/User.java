@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.modelo;
 
 import android.os.Parcel;
@@ -247,10 +263,28 @@ public class User implements Parcelable {
         dest.writeString(this.nickNameUser);
         dest.writeString(this.emailUser);
         dest.writeString(this.passwordUser);
+        dest.writeString(this.idUserGCM);
         dest.writeTypedList(this.listListTask);
         dest.writeTypedList(this.listGroup);
 
 
+/**
+ *     private int idUser;
+ private String nameUser;
+ private String nickNameUser;
+ private String emailUser;
+ private String passwordUser;
+ private String idUserGCM;
+ //el usuario se crea con una lista de de listas de tareas, de manera que cuando
+ //creo una nueva lista de tareas la añado a mi array donde guardo todas mis listas.
+ private List<ListTasks> listListTask;
+ //El usuario se crea con una lista de grupos, ya que puede o no pertenecer
+ //a ninguno o muchos grupos. Cuando yo comparta una lista se creara un grupo, en el
+ //aparecere yo, otro usuario con el que haya compartido la lista y a esa lista se le
+ //asigna el grupo.
+ private List<Group> listGroup;
+
+ */
     }
 
     public User(Parcel dest) {
@@ -259,6 +293,7 @@ public class User implements Parcelable {
         this.nickNameUser = dest.readString();
         this.emailUser = dest.readString();
         this.passwordUser = dest.readString();
+        this.idUserGCM = dest.readString();
         this.listListTask = new ArrayList<ListTasks>();
         dest.readTypedList(this.listListTask, ListTasks.CREATOR);
         this.listGroup = new ArrayList<Group>();

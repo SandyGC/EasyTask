@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.dataBase.CustomCRUD;
 
 import android.content.ContentValues;
@@ -83,6 +99,7 @@ public class UserDataBase implements CRUD<User> {
 
     /**
      * Metodo que me insertara un reregistro en la DB.
+     *
      * @param object Objeto a insertar.
      * @return Objeto insertado en la DB. Se diferencia del objeto que ha entrado al metodo en que
      * este tiene un ID.
@@ -103,8 +120,9 @@ public class UserDataBase implements CRUD<User> {
             valores.put("nick", user.getNickNameUser());
             valores.put("email", user.getEmailUser());
             valores.put("password", user.getPasswordUser());
+            valores.put("idUserGCM", user.getIdUserGCM());
             idUser = (int) sqdb.insert("Users", null, valores);
-            Log.d("nom", idUser+"......");
+
         }
 
         user.setIdUser(idUser);
@@ -114,6 +132,7 @@ public class UserDataBase implements CRUD<User> {
 
     /**
      * Metodo que m e devolvera un usuario de la DB busvando por ID.
+     *
      * @param id Identificador a eliminar de la DB.
      * @return Usuario encontrado, null en caso de no existir,
      * @throws Exception
@@ -123,9 +142,9 @@ public class UserDataBase implements CRUD<User> {
         User user = null;
         if (sqdb != null) {
 
-            Cursor cursor = sqdb.rawQuery("select * from USERS  where id_User = "+id, null);
+            Cursor cursor = sqdb.rawQuery("select * from USERS  where id_User = " + id, null);
             if (cursor.moveToFirst()) {
-                user = new User(cursor.getInt(0),cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
             }
         }
         return user;
@@ -142,14 +161,14 @@ public class UserDataBase implements CRUD<User> {
     public boolean update(User object) throws Exception {
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("name",object.getNameUser());
-        contentValues.put("nick",object.getNickNameUser());
+        contentValues.put("name", object.getNameUser());
+        contentValues.put("nick", object.getNickNameUser());
         contentValues.put("email", object.getEmailUser());
         contentValues.put("idUserGCM", object.getIdUserGCM());
-        int numColums = sqdb.update("USERS", contentValues, "id_User = "+object.getIdUser(), null);
-        if (numColums == 0){
+        int numColums = sqdb.update("USERS", contentValues, "id_User = " + object.getIdUser(), null);
+        if (numColums == 0) {
             return false;
-        }else {
+        } else {
             return true;
         }
 
@@ -164,30 +183,31 @@ public class UserDataBase implements CRUD<User> {
      */
     @Override
     public boolean delete(User object) throws Exception {
-        int numColums = sqdb.delete("USERS", "id_User = "+object.getIdUser(), null);
-        if (numColums == 0){
+        int numColums = sqdb.delete("USERS", "id_User = " + object.getIdUser(), null);
+        if (numColums == 0) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
     /**
      * Metodo que me devol vera toda la lista de usurios de la DB
+     *
      * @return List<Users>
      */
     @Override
-    public List<User> getAll()  {
+    public List<User> getAll() {
         List<User> listUser = new ArrayList<User>();
 
         Cursor cursor = sqdb.rawQuery("SELECT * FROM USERS", null);
 
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             do {
                 User user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                         cursor.getString(3));
                 listUser.add(user);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return listUser;
     }

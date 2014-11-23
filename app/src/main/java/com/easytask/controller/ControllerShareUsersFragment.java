@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.controller;
 
 import android.app.Activity;
@@ -19,7 +35,6 @@ import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
  * to handle interaction events.
  * Use the {@link ControllerShareUsersFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class ControllerShareUsersFragment extends Fragment {
 
@@ -40,6 +55,7 @@ public class ControllerShareUsersFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     public ControllerShareUsersFragment() {
         // Required empty public constructor
     }
@@ -57,7 +73,7 @@ public class ControllerShareUsersFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_controller_share_users, container, false);
 
-        if (v != null){
+        if (v != null) {
             editText = (EditText) v.findViewById(R.id.searchName);
             listView = (ListView) v.findViewById(R.id.listView_searchUsers);
         }

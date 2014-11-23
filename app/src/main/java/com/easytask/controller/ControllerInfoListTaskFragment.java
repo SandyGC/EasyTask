@@ -1,5 +1,21 @@
 package com.easytask.controller;
 
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,13 +45,12 @@ import java.util.List;
  * to handle interaction events.
  * Use the {@link ControllerInfoListTaskFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class ControllerInfoListTaskFragment extends Fragment {
 
-    private static final String AUTOR ="Autor: ";
+    private static final String AUTOR = "Autor: ";
 
-    private static final String TITULO ="Titulo: ";
+    private static final String TITULO = "Titulo: ";
 
     private TextView tittlePropietario, tittleListTask, dateTask, statusTask;
 
@@ -56,13 +71,14 @@ public class ControllerInfoListTaskFragment extends Fragment {
     public static ControllerInfoListTaskFragment newInstance(Bundle bundle) {
         ControllerInfoListTaskFragment fragment = new ControllerInfoListTaskFragment();
         Bundle args = new Bundle();
-        if (bundle != null){
-            args.putParcelable("listTask",bundle.getParcelable("listTask"));
-            args.putParcelable("user",bundle.getParcelable("user"));
+        if (bundle != null) {
+            args.putParcelable("listTask", bundle.getParcelable("listTask"));
+            args.putParcelable("user", bundle.getParcelable("user"));
         }
         fragment.setArguments(args);
         return fragment;
     }
+
     public ControllerInfoListTaskFragment() {
         // Required empty public constructor
     }
@@ -80,7 +96,7 @@ public class ControllerInfoListTaskFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_controller_info_list_task, container, false);
 
-        if (v!= null){
+        if (v != null) {
             tittlePropietario = (TextView) v.findViewById(R.id.infoUserListTask);
             tittleListTask = (TextView) v.findViewById(R.id.info_tittle_ListTask);
             listView = (ListView) v.findViewById(R.id.InfoListViewListTask);
@@ -92,9 +108,9 @@ public class ControllerInfoListTaskFragment extends Fragment {
 
         user = getArguments().getParcelable("user");
 
-        tittlePropietario.setText(AUTOR+listTasks.getUser().getNickNameUser());
+        tittlePropietario.setText(AUTOR + listTasks.getUser().getNickNameUser());
 
-        tittleListTask.setText(TITULO+listTasks.getTitle());
+        tittleListTask.setText(TITULO + listTasks.getTitle());
 
         dateTask.setText(listTasks.getDateList());
 

@@ -1,3 +1,19 @@
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.dataBase;
 
 import android.content.Context;
@@ -21,8 +37,8 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "name TEXT NOT NULL," +
             "nick TEXT NOT NULL UNIQUE," +
             "email TEXT NOT NULL," +
-            "password TEXT NOT NULL,"+
-			"idUserGCM TEXT )";
+            "password TEXT NOT NULL," +
+            "idUserGCM TEXT )";
     private String createTableTask = "create table if not exists TASKS " +
             "(id_Task INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "realized INTEGER NOT NULL, " +
@@ -31,8 +47,8 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "FOREIGN KEY(idList) REFERENCES LISTTASKS(idList))";
     private String createTableGroup = "CREATE TABLE IF NOT EXISTS  GROUPS " +
             "(id_Group INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            "nameGroup TEXT,"+
-			"id_UnicoG TEXT UNIQUE)";
+            "nameGroup TEXT," +
+            "id_UnicoG TEXT UNIQUE)";
 
     private String createTableUserGroup = "CREATE TABLE IF NOT EXISTS  USERGROUP" +
             "( adminGroup INTEGER NOT NULL ," +
@@ -46,8 +62,8 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "titleList TEXT," +
             "dateList TIMESTAMP NOT NULL DEFAULT current_timestamp," +
             "status_share INTEGER NOT NULL," +
-            "status TEXT NOT NULL,"+
-			"id_UnicoL TEXT UNIQUE,"+
+            "status TEXT NOT NULL," +
+            "id_UnicoL TEXT UNIQUE," +
             "id_Group INTEGER ," +
             "id_User INTEGER , " +
             "FOREIGN KEY (id_Group) REFERENCES GROUPS (id_Group)," +

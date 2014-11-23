@@ -2,15 +2,17 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_save"
+    <item
+        android:id="@+id/action_save"
         android:title="@string/action_share"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_save"/>
+        android:icon="@android:drawable/ic_menu_save" />
 
-    <item android:id="@+id/action_share"
+    <item
+        android:id="@+id/action_share"
         android:title="@string/action_share"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_share"/>
+        android:icon="@android:drawable/ic_menu_share" />
 </menu>

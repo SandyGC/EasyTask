@@ -1,3 +1,21 @@
+
+
+/**
+ * Copyright [2014] [Sandy Guerrero Cajas]
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 package com.easytask.dataBase.CustomCRUD;
 
 import android.content.ContentValues;
@@ -20,7 +38,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by danny on 1/11/14.
+ * Created by sandy on 1/11/14.
  */
 public class ListTaskDataBase implements CRUD<ListTasks> {
 
@@ -120,7 +138,6 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     }
 
     /**
-     *
      * @param object
      * @return
      * @throws Exception
@@ -146,7 +163,7 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         //Modifico el id de la lista
         object.setIdListTask(idListTask);
         //Modifico la clave unia de la lista
-        ListTasks listTasks =  insertIdUnique(object);
+        ListTasks listTasks = insertIdUnique(object);
 
         return listTasks;
     }
@@ -157,7 +174,6 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     }
 
     /**
-     *
      * @param object
      * @return
      * @throws Exception
@@ -181,17 +197,16 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     }
 
     /**
-     *
      * @param object
      * @return
      * @throws Exception
      */
     @Override
     public boolean delete(ListTasks object) throws Exception {
-        int numColums = sqdb.delete("LISTTASKS","id_List = "+object.getIdListTask(), null);
-        if (numColums == 0){
+        int numColums = sqdb.delete("LISTTASKS", "id_List = " + object.getIdListTask(), null);
+        if (numColums == 0) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
@@ -245,6 +260,7 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     /**
      * Metodo que modificara la clace unica de la lista.
      * Al llamar a este meodo se modificara la clave unica de la lista,en la DB y se modificar el objeto.
+     *
      * @param object Objeto ListTask
      * @return ListTask con idUnico añadido
      */

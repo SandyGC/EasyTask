@@ -85,11 +85,11 @@ public class UserAdapter extends BaseAdapter {
 
         User user = userList.get(position);
 
-        if (v == null){
+        if (v == null) {
             v = inflater.inflate(R.layout.item_share_user, null);
             shareUserHolder = new ShareUserHolder(v);
             v.setTag(shareUserHolder);
-        }else{
+        } else {
             shareUserHolder = (ShareUserHolder) v.getTag();
         }
 

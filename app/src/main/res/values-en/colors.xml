@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="shadow">#fff4f4f4</color>
+    <color name="shadowLite">#fff8f8f8</color>
+    <color name="shadowHide">#ffd4d4d4</color>
+    <color name="darckGray">#ff727272</color>
+    <color name="blackLite">#ff3f3f3f</color>
+    <color name="greenLite">#a81fdc4c</color>
+    <color name="purpleLite">#a87c14dc</color>
+    <color name="colorLetra">#ff44005c</color>
+    <color name="colorfondoAction">#cc3aac21</color>
+</resources>

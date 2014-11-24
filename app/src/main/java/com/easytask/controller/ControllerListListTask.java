@@ -78,7 +78,7 @@ public class ControllerListListTask extends Activity
     public void onSectionAttached(int number) {
 
         Fragment fragment = null;
-
+        Bundle bundle = new Bundle();
         switch (number) {
             case 1:
                 mTitle = getString(R.string.tittle_controller_data_user);
@@ -86,14 +86,16 @@ public class ControllerListListTask extends Activity
 
                 break;
             case 2:
-                Bundle bundle = new Bundle();
+
                 bundle.putParcelable("usuario", user);
-                mTitle = getString(R.string.app_name);
+                mTitle = getString(R.string.listas_navigator);
                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
 
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                mTitle = getString(R.string.settings);
+                bundle.putParcelable("usuario", user);
+                fragment = new ControllerLanguage().newInstance(bundle);
                 break;
             default:
 
@@ -171,4 +173,6 @@ public class ControllerListListTask extends Activity
         super.onBackPressed();
 
     }
+
+
 }

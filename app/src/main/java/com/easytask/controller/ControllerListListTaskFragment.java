@@ -28,6 +28,7 @@ import android.widget.ListView;
 
 import com.easytask.R;
 import com.easytask.adaptet.ListTaskAdapter;
+import com.easytask.controller.customListener.OnItemLongClickListenerListView;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.modelo.ListTasks;
@@ -44,6 +45,8 @@ import java.util.List;
 public class ControllerListListTaskFragment extends Fragment implements OnFragmentInteractionListener {
 
     private ListTaskDataBase listTaskDataBase;
+
+    private OnItemLongClickListenerListView onItemLongClickListenerListView;
 
     /**
      * The fragment argument representing the section number for this
@@ -89,6 +92,7 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
 
         listTaskDataBase = new ListTaskDataBase(getActivity().getApplicationContext());
 
+        onItemLongClickListenerListView = new OnItemLongClickListenerListView(this);
 
         try {
             listListTasks = listTaskDataBase.getAll();
@@ -100,6 +104,7 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
 
         listListTaskView.setAdapter(listTaskAdapter);
 
+        listListTaskView.setOnItemLongClickListener(onItemLongClickListenerListView);
 
         return v;
     }
@@ -137,5 +142,18 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
 
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+    }
+
+    public void delteItem(int position) {
+
+        try {
+            listTaskDataBase.delete(listListTasks.get(position));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listListTasks.remove(position);
+        listTaskAdapter.notifyDataSetChanged();
+        //listTaskAdapter.notifyDataSetInvalidated();
+
     }
 }

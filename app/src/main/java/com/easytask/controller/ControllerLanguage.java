@@ -18,13 +18,21 @@ package com.easytask.controller;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.easytask.R;
+import com.easytask.controller.customListener.OnItemClickListenerListView;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
+import com.easytask.modelo.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,7 +42,17 @@ import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
  * Use the {@link ControllerLanguage#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ControllerLanguage extends Fragment {
+public class ControllerLanguage extends Fragment implements OnFragmentInteractionListener {
+
+    private static final String LANGUAGE = "language";
+
+    private OnItemClickListenerListView onItemClickListenerListView;
+
+    private String[] idiomas = new String[]{"System language", "Español", "English"};
+
+    private ListView listView;
+
+    private User user;
 
     private OnFragmentInteractionListener mListener;
 
@@ -44,9 +62,12 @@ public class ControllerLanguage extends Fragment {
      *
      * @return A new instance of fragment ControllerLanguage.
      */
-    public static ControllerLanguage newInstance() {
+    public static ControllerLanguage newInstance(Bundle arguments) {
         ControllerLanguage fragment = new ControllerLanguage();
         Bundle args = new Bundle();
+        if (arguments != null) {
+            args = arguments;
+        }
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,11 +89,33 @@ public class ControllerLanguage extends Fragment {
         View v = inflater.inflate(R.layout.fragment_controller_language, container, false);
 
         if (v != null) {
-
+            listView = (ListView) v.findViewById(R.id.listview_language);
         }
         return v;
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        onItemClickListenerListView = new OnItemClickListenerListView(this);
+
+        if (savedInstanceState != null) {
+            this.user = getArguments().getParcelable("user");
+        }
+
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                R.layout.simple_item_listview, idiomas);
+
+        listView.setAdapter(adaptador);
+
+        listView.setEnabled(true);
+
+        listView.setOnItemClickListener(onItemClickListenerListView);
+
+        //Modifico las opciones de menu para que se infle otro layout
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -91,5 +134,46 @@ public class ControllerLanguage extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        this.getActivity().getMenuInflater().inflate(R.menu.global, menu);
+    }
 
+    /**
+     * @param Languaje
+     */
+    public void setLanguage(String Languaje) {
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(
+                ControllerLanguage.class.getSimpleName(),
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(LANGUAGE, Languaje);
+        editor.commit();
+    }
+
+
+    /**
+     * Metodo qye sera llamao para que se recarge la app con el idioma elegido
+     */
+    public void rebootApp() {
+        onFragmentInteraction(user, 0);
+    }
+
+    @Override
+    public void onFragmentInteraction(Object o, int number) {
+
+        User user = (User) o;
+
+        Fragment fragment;
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        Bundle bundle = new Bundle();
+
+        bundle.putParcelable("usuario", user);
+        fragment = new ControllerListListTaskFragment().newInstance(bundle);
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+
+
+    }
 }

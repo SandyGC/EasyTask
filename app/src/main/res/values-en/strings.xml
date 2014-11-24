@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EasyTask</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_share">Share</string>
+    <string name="newTask">New Task</string>
+    <string name="info">Information</string>
+    <string name="puedenVer">Can be seen: </string>
+    <string name="change_language">Choose the lenguage </string>
+    <string name="orderShare">Shared tasks</string>
+    <string name="myTask">My tasks</string>
+    <string name="allTask">All</string>
+    <string name="tittle">Tittle</string>
+    <string name="botonInicio">LOGIN</string>
+    <string name="botonRegistrar">SIGN IN</string>
+    <string name="title_activity_controller_sign_in">ControllerSignIn</string>
+    <string name="textViewNombre">Enter your name :</string>
+    <string name="textViewNick">Enter your Nick Name:</string>
+    <string name="textViewEmail">Enter your email:</string>
+    <string name="textViewPass">Enter your password:</string>
+    <string name="textViewInfoPass">Remember that the password must match in both fields must have a maximum of 16 and minimum 8 characters</string>
+    <string name="editTextNombre">Name</string>
+    <string name="editTextNick">Nick</string>
+    <string name="editTextEmail">Email</string>
+    <string name="editTextPassword">**********</string>
+    <string name="buttonNext">Next</string>
+    <string name="buttonAceptar">OK</string>
+    <string name="title_activity_controller_mostrar_usuario">ControllerMostrarUsuario</string>
+    <string name="btEdit">Edit</string>
+    <string name="btSave">Save</string>
+    <string name="title_activity_controller_lista_task">ControllerListaTask</string>
+    <string name="settings">Configuration</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="title_activity_controller_list_left">ControllerListLeft</string>
+    <string name="perfil_navigator">Profile</string>
+    <string name="listas_navigator">List of Tasks</string>
+    <string name="configuracion_navigator">Configuration</string>
+
+    <!-- Lista de iconos de navegacion -->
+    <array name="navigation__iconos">
+        <item>@android:drawable/ic_menu_view</item>
+        <item>@android:drawable/checkbox_on_background</item>
+        <item>@android:drawable/ic_menu_preferences</item>
+    </array>
+
+    <string name="title_activity_controller_list_task">ControllerListTask</string>
+    <string name="title_activity_controller_profile">My Profile</string>
+    <string name="title_activity_controller_vista_inicio">ControllerVistaInicio</string>
+    <string name="title_activity_controller_sing_in">ControllerSingIn</string>
+    <string name="title_activity_controller_sing_in_password">ControllerSingInPassword</string>
+    <string name="tittle_controller_data_user">Profile</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

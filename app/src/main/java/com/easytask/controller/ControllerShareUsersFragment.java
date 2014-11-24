@@ -20,6 +20,8 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -78,6 +80,9 @@ public class ControllerShareUsersFragment extends Fragment {
             listView = (ListView) v.findViewById(R.id.listView_searchUsers);
         }
 
+        //Modifico las opciones de menu para que se infle otro layout
+        setHasOptionsMenu(true);
+
         return v;
     }
 
@@ -99,5 +104,10 @@ public class ControllerShareUsersFragment extends Fragment {
         mListener = null;
     }
 
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        this.getActivity().getMenuInflater().inflate(R.menu.global, menu);
+    }
 }

@@ -17,15 +17,15 @@
 package com.easytask.controller;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -245,6 +245,9 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
                     updateListTask(listTasks);
                 }
                 onFragmentInteraction(null, 1);
+                //con estas dos lineas de codigo escondo el teclado al abrir el navigation drawer.
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                 break;
         }
         return super.onOptionsItemSelected(item);

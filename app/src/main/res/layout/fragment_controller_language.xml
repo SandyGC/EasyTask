@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.easytask.controller.ControllerLanguage">
+    tools:context="com.easytask.controller.ControllerLanguage"
+    android:background="@drawable/fondopantalla1">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -14,7 +15,8 @@
             android:layout_margin="10dp"
             android:padding="5dp"
             android:text="@string/change_language"
-            android:textSize="30dp"
+            android:textSize="26dp"
+            android:textColor="@color/colorLetra"
             android:gravity="center_vertical"
             android:id="@+id/text_language" />
 
@@ -23,7 +25,10 @@
             android:layout_height="fill_parent"
             android:layout_below="@+id/text_language"
             android:layout_margin="10dp"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="1dp"
+            android:id="@+id/listview_language">
 
         </ListView>
 

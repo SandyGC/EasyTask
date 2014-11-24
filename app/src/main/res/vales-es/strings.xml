@@ -6,8 +6,8 @@
     <string name="action_share">Comparitr</string>
     <string name="newTask">Nueva tarea</string>
     <string name="info">Informacion</string>
-    <string name="puedenVer">Puden ver: </string>
-    <string name="change_language">Elige el idioma: </string>
+    <string name="puedenVer">Puden ver:</string>
+    <string name="change_language">Elige el idioma:</string>
     <string name="orderShare">Tareas compartidas</string>
     <string name="myTask">Mis tareas</string>
     <string name="allTask">Todas</string>
@@ -19,8 +19,10 @@
     <string name="textViewNick">Introduce tu Nick Name:</string>
     <string name="textViewEmail">Introduce tu email:</string>
     <string name="textViewPass">Introduce tu contraseña:</string>
-    <string name="textViewInfoPass">Recuerda que la contraseña debe coincidir en los dos campos, tiene que tener
-    un maximo de 16 caracteres y mínimo de 8</string>
+    <string name="textViewInfoPass">Recuerda que la contraseña debe coincidir en los dos campos,
+        tiene que tener
+        un maximo de 16 caracteres y mínimo de 8
+    </string>
     <string name="editTextNombre">Nombre</string>
     <string name="editTextNick">Nick</string>
     <string name="editTextEmail">email</string>

@@ -19,6 +19,7 @@ package com.easytask.controller;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import android.widget.ListView;
 
 import com.easytask.R;
 import com.easytask.adaptet.ListTaskAdapter;
+import com.easytask.controller.asyncTask.MyService;
 import com.easytask.controller.customListener.OnItemLongClickListenerListView;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
@@ -79,6 +81,15 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
     public ControllerListListTaskFragment() {
 
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Intent intent = new Intent(getActivity(), MyService.class);
+        if (!MyService.isRunning()) {
+            this.getActivity().startService(intent);
+        }
     }
 
     @Override

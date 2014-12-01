@@ -19,9 +19,11 @@ package com.easytask.controller.asyncTask;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.widget.Toast;
 
 import com.easytask.controller.ControllerSingIn;
+import com.easytask.dao.InterfacesDAO.IUserDao;
+import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
 import com.easytask.modelo.User;
 
 /**
@@ -35,12 +37,18 @@ public class CheckData extends AsyncTask {
     private ControllerSingIn controllerSignIn;
     private ProgressDialog progresDialog;
     private User user;
+    private IUserDao easyTaskUserDao;
 
     public CheckData(Context context, ControllerSingIn controllerSignIn, User user) {
         this.context = context;
         this.controllerSignIn = controllerSignIn;
         this.user = user;
         progresDialog = new ProgressDialog(context, ProgressDialog.STYLE_SPINNER);
+        try {
+            easyTaskUserDao = GestorFactoryDAO.getInstance().getFactory().getIUserDao();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -79,8 +87,14 @@ public class CheckData extends AsyncTask {
     protected Object doInBackground(Object[] params) {
 
         try {
+            this.user = easyTaskUserDao.read(this.user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
             Thread.sleep(5000);
-            Log.d(TAG, user.getNameUser());
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -103,6 +117,10 @@ public class CheckData extends AsyncTask {
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);
         progresDialog.dismiss();
-        controllerSignIn.intentPassword(user);
+        if (o == null) {
+            Toast.makeText(context, "Debes elegir otro nick", Toast.LENGTH_SHORT).show();
+        } else {
+            controllerSignIn.intentPassword(user);
+        }
     }
 }

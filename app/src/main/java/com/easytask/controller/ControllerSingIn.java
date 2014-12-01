@@ -32,7 +32,6 @@ import com.easytask.R;
 import com.easytask.controller.asyncTask.CheckData;
 import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
-import com.google.android.gms.fitness.data.Value;
 
 import java.io.IOException;
 
@@ -77,6 +76,7 @@ public class ControllerSingIn extends Activity {
         // }
         return super.onOptionsItemSelected(item);
     }
+
 
     public User validateFields() {
 

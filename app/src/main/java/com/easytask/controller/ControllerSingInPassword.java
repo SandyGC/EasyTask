@@ -27,7 +27,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.easytask.R;
-import com.easytask.controller.asyncTask.CheckData;
 import com.easytask.controller.asyncTask.SingIn;
 import com.easytask.modelo.User;
 import com.google.android.gms.common.ConnectionResult;
@@ -93,6 +92,13 @@ public class ControllerSingInPassword extends Activity {
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(this, ControllerSingIn.class);
+        startActivity(intent);
     }
 
     public void startApp(User user) {

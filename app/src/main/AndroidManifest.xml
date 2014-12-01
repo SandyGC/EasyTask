@@ -58,6 +58,12 @@
             android:name=".controller.ControllerSingInPassword"
             android:label="@string/title_activity_controller_sing_in_password"
             android:theme="@style/generalnotitle"></activity>
+
+        <service
+            android:enabled="true"
+            android:name="com.easytask.controller.asyncTask.MyService"
+            android:icon="@drawable/ic_launcher" />
+
     </application>
 
 </manifest>

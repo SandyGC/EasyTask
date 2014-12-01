@@ -20,6 +20,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.easytask.controller.ControllerSingInPassword;
 import com.easytask.dao.InterfacesDAO.IUserDao;
@@ -75,20 +76,22 @@ public class SingIn extends AsyncTask {
 
     @Override
     protected Object doInBackground(Object[] params) {
+        user.setPasswordUser(password);
+
+
         try {
             Thread.sleep(5000);
-            user.setPasswordUser(password);
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        User usr = null;
         try {
-            idGCM();
+            usr = idGCM();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return user;
+        return usr;
     }
 
 
@@ -101,6 +104,9 @@ public class SingIn extends AsyncTask {
 
         if (user != null) {
             controllerSingInPassword.startApp(user);
+        } else {
+            Toast.makeText(context, "Error al registrar tu usuario, revisa tus datos", Toast.LENGTH_SHORT).show();
+            System.exit(0);
         }
 
     }
@@ -127,7 +133,7 @@ public class SingIn extends AsyncTask {
 
     }
 
-    public void idGCM() throws IOException {
+    public User idGCM() throws IOException {
 
 
         gcm = GoogleCloudMessaging.getInstance(context);
@@ -138,15 +144,19 @@ public class SingIn extends AsyncTask {
         user.setIdUserGCM(regid);
         //registro en el servidor
 
+        User userInsertado = null;
+
         try {
-            daoUser.insert(user);
+            userInsertado = daoUser.insert(user);
             Log.d("Usuario registrado en el servidor :", user.getNameUser());
             //lo meto en local
-            saveUserLocal(user);
+            if (userInsertado != null) {
+                saveUserLocal(userInsertado);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        return userInsertado;
     }
 
 

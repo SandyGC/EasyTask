@@ -15,9 +15,10 @@ public class EasyTaskUserGroupDao implements IUserGroupDao {
     }
 
     @Override
-    public UserGroup read(int id) throws Exception {
+    public UserGroup read(UserGroup object) throws Exception {
         return null;
     }
+
 
     @Override
     public boolean update(UserGroup object) throws Exception {

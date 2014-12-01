@@ -15,9 +15,10 @@ public class EasyTaskTaskDao implements ITaskDao {
     }
 
     @Override
-    public Task read(int id) throws Exception {
+    public Task read(Task object) throws Exception {
         return null;
     }
+
 
     @Override
     public boolean update(Task object) throws Exception {

@@ -9,15 +9,19 @@ import java.util.List;
  * Created by danny on 18/11/14.
  */
 public class EasyTaskGroupDao implements IGroupDao {
+
+    private static final String URL = "http://easyt.site40.net/index.php/";
+
     @Override
     public Group insert(Group object) throws Exception {
         return null;
     }
 
     @Override
-    public Group read(int id) throws Exception {
+    public Group read(Group object) throws Exception {
         return null;
     }
+
 
     @Override
     public boolean update(Group object) throws Exception {

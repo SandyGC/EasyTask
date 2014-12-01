@@ -25,7 +25,7 @@ public interface DataAccesObject<T> {
 
     public T insert(T object) throws Exception;
 
-    public T read(int id) throws Exception;
+    public T read(T object) throws Exception;
 
     public boolean update(T object) throws Exception;
 

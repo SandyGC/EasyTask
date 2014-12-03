@@ -7,8 +7,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.easytask.controller.ControllerSingIn"
-    android:background="@drawable/fondopantalla1"
-    >
+    android:background="@drawable/fondopantalla1">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,8 +15,7 @@
         android:id="@+id/linearLayoutNombre"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        >
+        android:layout_marginBottom="30dp">
 
 
         <TextView
@@ -31,7 +29,7 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textAutoCorrect"
             android:hint="@string/editTextNombre"
             android:ems="10"
             android:id="@+id/editTextSingInNombre" />
@@ -57,11 +55,10 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:inputType="text"
+            android:inputType="textAutoCorrect"
             android:hint="@string/editTextNick"
             android:ems="10"
-            android:id="@+id/editTextSingInNick"
-            />
+            android:id="@+id/editTextSingInNick" />
 
     </LinearLayout>
 
@@ -84,7 +81,7 @@
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:inputType="textEmailAddress"
+            android:inputType="textEmailAddress|textAutoCorrect"
             android:hint="@string/editTextEmail"
             android:ems="10"
             android:id="@+id/editTextSingInEmail" />
@@ -100,7 +97,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/linearLayoutNick"
         android:onClick="next"
-        android:background="@drawable/buttongreen"/>
+        android:background="@drawable/buttongreen" />
 
 
 </RelativeLayout>

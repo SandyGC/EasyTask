@@ -20,12 +20,13 @@
                 android:layout_height="60dp"
                 android:hint="@string/tittle"
                 android:textStyle="bold"
+                android:inputType="textAutoCorrect"
                 android:textColor="@color/darckGray"
                 android:id="@+id/title_listTask"
                 android:capitalize="sentences"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -41,19 +42,21 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="left|center"
-                android:alpha="0.8"/>
+                android:alpha="0.8" />
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="58dp"
                 android:id="@+id/editTextNewTask"
                 android:layout_marginRight="10dp"
+                android:inputType="textAutoCorrect"
                 android:layout_weight="1">
+
                 <requestFocus />
-                </EditText>
+            </EditText>
 
 
-                />
+            />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -61,8 +64,7 @@
                 android:layout_height="60dp"
                 android:layout_marginRight="5dp"
                 android:text="Listo"
-                android:id="@+id/buttonListo"
-               />
+                android:id="@+id/buttonListo" />
 
         </LinearLayout>
 

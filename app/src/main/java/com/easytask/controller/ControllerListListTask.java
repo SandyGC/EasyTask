@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import com.easytask.R;
 import com.easytask.controller.interfaceFragment.NavigationDrawerCallbacks;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
+import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
 
 
@@ -47,6 +48,7 @@ public class ControllerListListTask extends Activity
      */
     private CharSequence mTitle;
 
+    private UserDataBase userDataBase;
 
     private User user;
 
@@ -54,6 +56,8 @@ public class ControllerListListTask extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controller);
+
+        userDataBase = new UserDataBase(this.getApplicationContext());
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -67,6 +71,7 @@ public class ControllerListListTask extends Activity
         Bundle extras = getIntent().getExtras();
 
         user = extras.getParcelable("usuario");
+
 
     }
 

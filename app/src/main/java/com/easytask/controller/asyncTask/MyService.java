@@ -41,6 +41,7 @@ public class MyService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Toast.makeText(this.getApplicationContext(), "servicio detenido", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -56,15 +57,10 @@ public class MyService extends Service {
             this.onDestroy();
         } else {
             for (int i = 0; i < listListTask.size(); i++) {
-                try {
-                    ListTasks listTask = iListTaskDao.insert(listListTask.get(i));
-                    if (listTask != null) {
-                        listTaskDataBase.update(listTask);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(this.getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+
+                UpData upData = new UpData(this.getApplicationContext(), listListTask.get(i));
+                upData.execute();
+
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {

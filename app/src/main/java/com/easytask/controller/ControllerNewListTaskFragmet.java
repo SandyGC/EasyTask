@@ -32,6 +32,7 @@ import android.widget.ListView;
 
 import com.easytask.R;
 import com.easytask.adaptet.TaskAdapter;
+import com.easytask.controller.asyncTask.UpdateTask;
 import com.easytask.controller.customListener.OnClickNewTask;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
@@ -72,6 +73,7 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
     private TaskDataBase taskDataBase;
 
     private OnFragmentInteractionListener mListener;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -188,6 +190,7 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         }
         task.setListTasks(listTasks);
         user.addTask(listTasks, task);
+
         saveTask(task);
         taskAdapter.notifyDataSetChanged();
         listTaskView.setSelection(listTasks.getTasks().size() - 1);
@@ -239,10 +242,17 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
                 onFragmentInteraction(null, 0);
                 break;
             case R.id.action_save:
-                if (listTasks.getTasks().size() == 0) {
-                    saveListTask(listTasks);
-                } else {
-                    updateListTask(listTasks);
+                if (listTasks.getIdListTask() != 0) {
+
+                    if (listTasks.getTasks().size() > 0) {
+                        UpdateTask updateTask = new UpdateTask(this, this.getActivity().getApplicationContext(), listTasks);
+                        updateTask.execute();
+
+
+                    } else {
+                        saveListTask(listTasks);
+                    }
+
                 }
                 onFragmentInteraction(null, 1);
                 //con estas dos lineas de codigo escondo el teclado al abrir el navigation drawer.
@@ -305,7 +315,7 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
      */
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm", Locale.getDefault());
+                "yyyy-MM-dd--HH-mm", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }

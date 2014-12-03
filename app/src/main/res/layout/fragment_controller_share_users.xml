@@ -26,6 +26,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="50dp"
+                    android:inputType="textAutoCorrect|textAutoComplete"
                     android:hint="@string/editTextNombre"
                     android:id="@+id/searchName" />
 

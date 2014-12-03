@@ -60,7 +60,7 @@ public class UserDataBase implements CRUD<User> {
             Cursor cursor = sqdb.rawQuery("select * from USERS where nick='" + nickU + "'", null);
             if (cursor.moveToFirst()) {
 
-                user = new User(cursor.getInt(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 
             }
 
@@ -87,7 +87,7 @@ public class UserDataBase implements CRUD<User> {
             Cursor cursor = sqdb.rawQuery("select * from USERS  where password not like ''", null);
             if (cursor.moveToFirst()) {
 
-                user = new User(cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
 
             }
 

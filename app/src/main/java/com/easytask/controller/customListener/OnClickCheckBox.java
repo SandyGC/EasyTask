@@ -23,6 +23,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.easytask.R;
+import com.easytask.controller.asyncTask.UpdateTaskDone;
 import com.easytask.dataBase.CustomCRUD.TaskDataBase;
 import com.easytask.modelo.Task;
 
@@ -58,6 +59,7 @@ public class OnClickCheckBox implements View.OnClickListener {
             task.setTaskDone(DONE);
             textView.setTextColor(Color.GRAY);
             try {
+
                 taskDataBase.update(task);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -72,5 +74,7 @@ public class OnClickCheckBox implements View.OnClickListener {
                 e.printStackTrace();
             }
         }
+        UpdateTaskDone updateTaskDone = new UpdateTaskDone(v.getContext(), task.getListTasks());
+        updateTaskDone.execute();
     }
 }

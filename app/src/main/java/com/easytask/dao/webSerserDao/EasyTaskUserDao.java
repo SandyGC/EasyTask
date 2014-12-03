@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class EasyTaskUserDao implements IUserDao {
 
-    private static final String URL = "http://easyt.site40.net/index.php/";
+    private static final String URL = "http://easyt.esy.es/index.php/";
 
     private HttpClient httpClient = new DefaultHttpClient();
 

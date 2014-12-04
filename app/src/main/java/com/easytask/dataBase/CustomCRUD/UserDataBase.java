@@ -210,4 +210,19 @@ public class UserDataBase implements CRUD<User> {
         }
         return listUser;
     }
+
+    public List<User> getAllWhereI() {
+        List<User> listUser = new ArrayList<User>();
+
+        Cursor cursor = sqdb.rawQuery("SELECT * FROM USERS", null);
+
+        if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
+                User user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
+                        cursor.getString(3));
+                listUser.add(user);
+            }
+        }
+        return listUser;
+    }
 }

@@ -32,13 +32,14 @@ import android.widget.ListView;
 
 import com.easytask.R;
 import com.easytask.adaptet.UserAdapter;
+import com.easytask.controller.asyncTask.ShareList;
 import com.easytask.controller.asyncTask.ShareUser;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
+import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.Group;
 import com.easytask.modelo.ListTasks;
 import com.easytask.modelo.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +64,9 @@ public class ControllerShareUsersFragment extends Fragment {
     //
     private ListTasks listTasks;
     private User user;
+    //
+    private UserDataBase userDataBase;
+    private View v;
 
     /**
      * Use this factory method to create a new instance of
@@ -88,10 +92,8 @@ public class ControllerShareUsersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         controllerShareUsersFragment = this;
-        if (savedInstanceState != null) {
-            this.listTasks = savedInstanceState.getParcelable("listTask");
-            this.user = savedInstanceState.getParcelable("user");
-        }
+
+        userDataBase = new UserDataBase(this.getActivity().getApplicationContext());
     }
 
     @Override
@@ -99,7 +101,15 @@ public class ControllerShareUsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v = inflater.inflate(R.layout.fragment_controller_share_users, container, false);
+        if (savedInstanceState != null) {
+            this.listTasks = savedInstanceState.getParcelable("listTask");
+            this.user = savedInstanceState.getParcelable("user");
+        } else {
+            this.listTasks = getArguments().getParcelable("listTask");
+            this.user = getArguments().getParcelable("user");
+        }
+
+        v = inflater.inflate(R.layout.fragment_controller_share_users, container, false);
 
 
         if (v != null) {
@@ -107,7 +117,8 @@ public class ControllerShareUsersFragment extends Fragment {
             listView = (ListView) v.findViewById(R.id.listView_searchUsers);
             searchButton = (Button) v.findViewById(R.id.searchButton);
         }
-        userList = new ArrayList<User>();
+
+        userList = userDataBase.getAllWhereI();
 
         userAdapter = new UserAdapter(this, userList);
 
@@ -133,13 +144,18 @@ public class ControllerShareUsersFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("voy acompartir", "-------------------->");
-                if (listTasks.getGroup() != null) {
+
+                if (listTasks.getGroup() == null) {
                     Group group = new Group("Sin nombre");
                     group.getParticipants().add(user);
                     group.getParticipants().add(userList.get(position));
+                    ShareList shareList = new ShareList(v.getContext(), group, listTasks);
+                    shareList.execute(0);
                 } else {
                     Group group = listTasks.getGroup();
                     group.getParticipants().add(userList.get(position));
+                    ShareList shareList = new ShareList(v.getContext(), group, listTasks);
+                    shareList.execute(1);
                 }
 
             }

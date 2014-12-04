@@ -14,6 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +37,16 @@ public class EasyTaskListDao implements IListTaskDao {
             id_group = object.getGroup().getIdGroup();
         }
 
-        HttpPost httpPost = new HttpPost(URL + "listtask/create/" + object.getTitle() + "/" + object.getDateList() + "/" +
-                object.getStatus_share() + "/" + object.getStatusList().toString() + "/" + object.getId_UnicoL() + "/" +
-                id_group + "/" + object.getUser().getNickNameUser());
+        String url = URLEncoder.encode(object.getTitle(), "UTF-8");
+        String url1 = URLEncoder.encode(object.getDateList(), "UTF-8");
+        String url2 = URLEncoder.encode(String.valueOf(object.getStatus_share()), "UTF-8");
+        String url3 = URLEncoder.encode(object.getStatusList().toString(), "UTF-8");
+        String url4 = URLEncoder.encode(object.getId_UnicoL(), "UTF-8");
+        String url5 = URLEncoder.encode(String.valueOf(id_group), "UTF-8");
+        String url6 = URLEncoder.encode(object.getUser().getNickNameUser(), "UTF-8");
+
+        HttpPost httpPost = new HttpPost(URL + "listtask/create/" + url + "/" + url1 + "/" + url2 + "/" + url3 +
+                "/" + url4 + "/" + url5 + "/" + url6 + "/");
 
         JSONArray jsonArray = new JSONArray();
 
@@ -77,9 +85,9 @@ public class EasyTaskListDao implements IListTaskDao {
 
     @Override
     public boolean update(ListTasks object) throws Exception {
+        String url = URLEncoder.encode(object.getId_UnicoL());
 
-
-        HttpPost httpPost = new HttpPost(URL + "listtask/update/" + object.getId_UnicoL());
+        HttpPost httpPost = new HttpPost(URL + "listtask/update/" + url);
 
         JSONArray jsonArray = new JSONArray();
 
@@ -119,5 +127,21 @@ public class EasyTaskListDao implements IListTaskDao {
     @Override
     public List<ListTasks> getAll() throws Exception {
         return null;
+    }
+
+
+    @Override
+    public Object updateID_Group(ListTasks listTasks) throws Exception {
+        String url = URLEncoder.encode(listTasks.getId_UnicoL(), "UTF-8");
+        String url1 = URLEncoder.encode(String.valueOf(listTasks.getGroup().getIdGroup()), "UTF-8");
+
+        HttpPost httpPost = new HttpPost(URL + url + "/" + url1);
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        if (statusCode == 200) {
+            return listTasks;
+        } else {
+            return null;
+        }
     }
 }

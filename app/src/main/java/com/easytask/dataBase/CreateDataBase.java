@@ -37,7 +37,7 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "name TEXT NOT NULL," +
             "nick TEXT NOT NULL UNIQUE," +
             "email TEXT NOT NULL," +
-            "password TEXT NOT NULL," +
+            "password TEXT," +
             "idUserGCM TEXT )";
     private String createTableTask = "create table if not exists TASKS " +
             "(id_Task INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +

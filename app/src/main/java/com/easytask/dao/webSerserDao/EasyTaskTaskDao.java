@@ -15,6 +15,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,9 @@ public class EasyTaskTaskDao implements ITaskDao {
     @Override
     public boolean updateAllForList(ListTasks listTask) throws Exception {
 
-        HttpPost httpPost = new HttpPost(URL + "listtask/updatetasks/" + listTask.getId_UnicoL());
+        String url = URLEncoder.encode(listTask.getId_UnicoL(), "UTF-8");
+
+        HttpPost httpPost = new HttpPost(URL + "listtask/updatetasks/" + url);
 
         JSONArray jsonArray = new JSONArray();
 

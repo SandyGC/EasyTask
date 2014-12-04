@@ -20,10 +20,9 @@
                 android:layout_height="60dp"
                 android:hint="@string/tittle"
                 android:textStyle="bold"
-                android:inputType="textAutoCorrect"
+                android:inputType="textCapSentences|textAutoCorrect"
                 android:textColor="@color/darckGray"
                 android:id="@+id/title_listTask"
-                android:capitalize="sentences"
                 android:textSize="24dp" />
 
         </LinearLayout>
@@ -49,7 +48,7 @@
                 android:layout_height="58dp"
                 android:id="@+id/editTextNewTask"
                 android:layout_marginRight="10dp"
-                android:inputType="textAutoCorrect"
+                android:inputType="textCapSentences|textAutoCorrect"
                 android:layout_weight="1">
 
                 <requestFocus />

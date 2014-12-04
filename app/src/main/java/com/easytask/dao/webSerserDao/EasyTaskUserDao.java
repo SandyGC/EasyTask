@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -29,9 +30,14 @@ public class EasyTaskUserDao implements IUserDao {
 
     @Override
     public User insert(User object) throws Exception {
-        HttpPost httpPostInserUser = new HttpPost(URL + "users/create/" + object.getNameUser() + "/"
-                + object.getNickNameUser() + "/" + object.getEmailUser() + "/" + object.getPasswordUser() + "/"
-                + object.getIdUserGCM());
+
+        String url = URLEncoder.encode(object.getNameUser(), "UTF-8");
+        String url1 = URLEncoder.encode(object.getNickNameUser(), "UTF-8");
+        //String url2 = URLEncoder.encode(object.getEmailUser(),"UTF-8");
+        String url3 = URLEncoder.encode(object.getPasswordUser(), "UTF-8");
+        String url4 = URLEncoder.encode(object.getIdUserGCM(), "UTF-8");
+
+        HttpPost httpPostInserUser = new HttpPost(URL + "users/create/" + url + "/" + url1 + "/" + object.getEmailUser() + "/" + url3 + "/" + url4);
         HttpResponse httpResponse = httpClient.execute(httpPostInserUser);
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         if (statusCode == 200) {
@@ -44,8 +50,11 @@ public class EasyTaskUserDao implements IUserDao {
 
     @Override
     public User read(User object) throws Exception {
+
+        String url = URLEncoder.encode(object.getNickNameUser(), "UTF8");
+
         //Construimos la user a la que vamos a llamar
-        HttpPost httpPostReadUser = new HttpPost(URL + "users/read/" + object.getNickNameUser());
+        HttpPost httpPostReadUser = new HttpPost(URL + "users/read/" + url);
         //Preparamos la respuesta del server
         HttpResponse response = httpClient.execute(httpPostReadUser);
         //Recuperamos el codigo de la respuesta
@@ -77,8 +86,11 @@ public class EasyTaskUserDao implements IUserDao {
 
     @Override
     public User readUserForShare(User u) throws Exception {
+
+        String url = URLEncoder.encode(u.getNickNameUser(), "UTF-8");
+
         //Construimos la user a la que vamos a llamar
-        HttpPost httpPostReadUser = new HttpPost(URL + "users/read/" + u.getNickNameUser());
+        HttpPost httpPostReadUser = new HttpPost(URL + "users/read/" + url);
         //Preparamos la respuesta del server
         HttpResponse response = httpClient.execute(httpPostReadUser);
         //Recuperamos el codigo de la respuesta

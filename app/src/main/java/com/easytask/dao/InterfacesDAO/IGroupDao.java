@@ -23,4 +23,5 @@ import com.easytask.modelo.Group;
  * Created by sandy on 18/11/14.
  */
 public interface IGroupDao extends DataAccesObject<Group> {
+
 }

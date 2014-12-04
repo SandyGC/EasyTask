@@ -23,4 +23,5 @@ import com.easytask.modelo.User;
  * Created by sandy on 18/11/14.
  */
 public interface IUserDao extends DataAccesObject<User> {
+    public User readUserForShare(User u) throws Exception;
 }

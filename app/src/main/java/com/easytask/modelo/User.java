@@ -55,6 +55,10 @@ public class User implements Parcelable {
 
     }
 
+    public User(String nickNameUser) {
+        this.nickNameUser = nickNameUser;
+    }
+
     public User(String nameUser, String nickNameUser, String emailUser) {
         this.nameUser = nameUser;
         this.nickNameUser = nickNameUser;

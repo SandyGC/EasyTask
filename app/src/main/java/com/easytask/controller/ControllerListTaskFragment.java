@@ -17,8 +17,8 @@
 package com.easytask.controller;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,7 +26,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -247,7 +246,7 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
                 bundle.putParcelable("listTask", listTask);
                 bundle.putParcelable("user", user);
 
-                fragment = new ControllerShareUsersFragment().newInstance();
+                fragment = new ControllerShareUsersFragment().newInstance(bundle);
                 break;
             case 3:
 

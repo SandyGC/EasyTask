@@ -3,6 +3,8 @@ package com.easytask.dao.webSerserDao;
 import com.easytask.dao.InterfacesDAO.IGroupDao;
 import com.easytask.modelo.Group;
 
+import org.apache.http.client.methods.HttpPost;
+
 import java.util.List;
 
 /**
@@ -14,6 +16,11 @@ public class EasyTaskGroupDao implements IGroupDao {
 
     @Override
     public Group insert(Group object) throws Exception {
+
+        int lastPasticipan = object.getParticipants().size() - 1;
+
+        HttpPost httpPost = new HttpPost(URL + "group/share/" + object.getParticipants().get(lastPasticipan) + "/" +
+                object.getParticipants().get(0) + "/");
         return null;
     }
 

@@ -328,7 +328,9 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         Bundle bundle = new Bundle();
         switch (number) {
             case 0:
-                fragment = new ControllerShareUsersFragment().newInstance();
+                bundle.putParcelable("listTask", listTasks);
+                bundle.putParcelable("user", user);
+                fragment = new ControllerShareUsersFragment().newInstance(bundle);
 
                 fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
                 break;

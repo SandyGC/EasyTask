@@ -42,6 +42,7 @@ public class Group implements Parcelable {
 
     public Group(String nameGroup) {
         this.nameGroup = nameGroup;
+        this.participants = new ArrayList<User>();
     }
 
     public Group() {

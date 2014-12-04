@@ -19,16 +19,27 @@ package com.easytask.controller;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.easytask.R;
+import com.easytask.adaptet.UserAdapter;
+import com.easytask.controller.asyncTask.ShareUser;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
+import com.easytask.modelo.Group;
+import com.easytask.modelo.ListTasks;
+import com.easytask.modelo.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +55,14 @@ public class ControllerShareUsersFragment extends Fragment {
 
     private EditText editText;
     private ListView listView;
+    private Button searchButton;
+    private ShareUser shareUser;
+    private ControllerShareUsersFragment controllerShareUsersFragment;
+    private UserAdapter userAdapter;
+    private List<User> userList;
+    //
+    private ListTasks listTasks;
+    private User user;
 
     /**
      * Use this factory method to create a new instance of
@@ -51,9 +70,12 @@ public class ControllerShareUsersFragment extends Fragment {
      *
      * @return A new instance of fragment ControllerShareUsersFragment.
      */
-    public static ControllerShareUsersFragment newInstance() {
+    public static ControllerShareUsersFragment newInstance(Bundle arguments) {
         ControllerShareUsersFragment fragment = new ControllerShareUsersFragment();
         Bundle args = new Bundle();
+        if (arguments != null) {
+            args = arguments;
+        }
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,7 +87,11 @@ public class ControllerShareUsersFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        controllerShareUsersFragment = this;
+        if (savedInstanceState != null) {
+            this.listTasks = savedInstanceState.getParcelable("listTask");
+            this.user = savedInstanceState.getParcelable("user");
+        }
     }
 
     @Override
@@ -75,10 +101,49 @@ public class ControllerShareUsersFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_controller_share_users, container, false);
 
+
         if (v != null) {
             editText = (EditText) v.findViewById(R.id.searchName);
             listView = (ListView) v.findViewById(R.id.listView_searchUsers);
+            searchButton = (Button) v.findViewById(R.id.searchButton);
         }
+        userList = new ArrayList<User>();
+
+        userAdapter = new UserAdapter(this, userList);
+
+        listView.setAdapter(userAdapter);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nikNameUser = editText.getText().toString().trim();
+                if (nikNameUser.length() != 0) {
+
+                    userList.removeAll(userList);
+                    userAdapter.notifyDataSetChanged();
+
+                    User user = new User(nikNameUser);
+                    shareUser = new ShareUser(v.getContext(), user, controllerShareUsersFragment);
+                    shareUser.execute();
+                }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("voy acompartir", "-------------------->");
+                if (listTasks.getGroup() != null) {
+                    Group group = new Group("Sin nombre");
+                    group.getParticipants().add(user);
+                    group.getParticipants().add(userList.get(position));
+                } else {
+                    Group group = listTasks.getGroup();
+                    group.getParticipants().add(userList.get(position));
+                }
+
+            }
+        });
 
         //Modifico las opciones de menu para que se infle otro layout
         setHasOptionsMenu(true);
@@ -109,5 +174,10 @@ public class ControllerShareUsersFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.clear();
         this.getActivity().getMenuInflater().inflate(R.menu.global, menu);
+    }
+
+    public void addUser(User user) {
+        userList.add(user);
+        userAdapter.notifyDataSetChanged();
     }
 }

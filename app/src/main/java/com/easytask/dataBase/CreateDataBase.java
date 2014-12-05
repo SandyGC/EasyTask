@@ -44,7 +44,7 @@ public class CreateDataBase extends SQLiteOpenHelper {
             "realized INTEGER NOT NULL, " +
             "tittle TEXT," +
             "idList INTEGER NOT NULL, " +
-            "FOREIGN KEY(idList) REFERENCES LISTTASKS(idList))";
+            "FOREIGN KEY(idList) REFERENCES LISTTASKS(id_List))";
     private String createTableGroup = "CREATE TABLE IF NOT EXISTS  GROUPS " +
             "(id_Group INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
             "nameGroup TEXT," +

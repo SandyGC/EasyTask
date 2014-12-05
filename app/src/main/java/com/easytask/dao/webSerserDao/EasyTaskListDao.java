@@ -46,7 +46,7 @@ public class EasyTaskListDao implements IListTaskDao {
         String url6 = URLEncoder.encode(object.getUser().getNickNameUser(), "UTF-8");
 
         HttpPost httpPost = new HttpPost(URL + "listtask/create/" + url + "/" + url1 + "/" + url2 + "/" + url3 +
-                "/" + url4 + "/" + url5 + "/" + url6 + "/");
+                "/" + url4 + "/" + url5 + "/" + url6);
 
         JSONArray jsonArray = new JSONArray();
 
@@ -135,7 +135,7 @@ public class EasyTaskListDao implements IListTaskDao {
         String url = URLEncoder.encode(listTasks.getId_UnicoL(), "UTF-8");
         String url1 = URLEncoder.encode(String.valueOf(listTasks.getGroup().getIdGroup()), "UTF-8");
 
-        HttpPost httpPost = new HttpPost(URL + url + "/" + url1);
+        HttpPost httpPost = new HttpPost(URL + "listtask/updatelisttaskgroup/" + url + "/" + url1);
         HttpResponse httpResponse = httpClient.execute(httpPost);
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         if (statusCode == 200) {

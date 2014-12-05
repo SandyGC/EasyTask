@@ -87,9 +87,24 @@ public class GCMIntentService extends IntentService {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mostrarNotification();
-        } else if (addTaskToList != null) {
 
+        } else if (addTaskToList != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(addTaskToList);
+                String id_unicoL = jsonObject.getString("id_UnicoL");
+                ListTasks listTasks = listTaskDataBase.readForIDUnico(id_unicoL);
+                JSONObject jsonObjectTask = jsonObject.getJSONObject("task");
+                Task task = new Task(jsonObjectTask.getInt("realized"), jsonObjectTask.getString("tittle"));
+                task.setListTasks(listTasks);
+
+                taskDataBase.insert(task);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (ListTaskRecive != null) {
+            mostrarNotification();
         }
 
     }

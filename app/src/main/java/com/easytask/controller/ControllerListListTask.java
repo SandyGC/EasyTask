@@ -70,7 +70,13 @@ public class ControllerListListTask extends Activity
 
         Bundle extras = getIntent().getExtras();
 
-        user = extras.getParcelable("usuario");
+        if (extras != null) {
+            user = extras.getParcelable("usuario");
+        }
+
+        if (user == null) {
+            user = userDataBase.existPassword();
+        }
 
 
     }

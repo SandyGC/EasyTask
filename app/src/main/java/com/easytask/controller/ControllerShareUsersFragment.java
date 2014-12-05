@@ -215,7 +215,7 @@ public class ControllerShareUsersFragment extends Fragment implements OnFragment
         bundle.putParcelable("user", user);
         Fragment fragment = new ControllerListTaskFragment().newInstance(bundle);
         android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(getTag()).commit();
         InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }

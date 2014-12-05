@@ -140,6 +140,9 @@ public class GCMIntentService extends IntentService {
                         jsonObjectRaiz.getInt("status_share"), StatusList.Creada,
                         user, 1);
 
+                String id_UnicoL = jsonObjectRaiz.getString("id_UnicoL");
+                listTasks.setId_UnicoL(id_UnicoL);
+
                 List<User> userList = new ArrayList<User>();
                 userList.add(userLocal);
                 userList.add(user);
@@ -148,9 +151,16 @@ public class GCMIntentService extends IntentService {
 
                 listTasks.setGroup(group);
 
-                userDataBase.insert(user);
-                listTaskDataBase.insert(listTasks);
-                groupDataBase.insert(group);
+                User save = userDataBase.selectUser(user.getNickNameUser());
+
+                if (save == null) {
+                    save = userDataBase.insert(user);
+                }
+
+                listTasks.setUser(save);
+
+                ListTasks listaskDataBase = listTaskDataBase.insert(listTasks);
+                Group groupsave = groupDataBase.insert(group);
 
                 for (int i = 0; i < listTasks.getGroup().getParticipants().size(); i++) {
                     UserGroup userGroup = null;

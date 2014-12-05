@@ -145,6 +145,8 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     @Override
     public ListTasks insert(ListTasks object) throws Exception {
 
+        boolean isUnicol = false;
+
         ContentValues valuesListTask = new ContentValues();
         valuesListTask.putNull("id_List");
         valuesListTask.put("titleList", object.getTitle());
@@ -160,13 +162,27 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         valuesListTask.put("status_server", object.getStatus_server());
         valuesListTask.put("id_User", object.getUser().getIdUser());
 
+
+        if (object.getId_UnicoL() != null) {
+            valuesListTask.put("id_UnicoL", object.getId_UnicoL());
+            isUnicol = true;
+        }
+
         int idListTask = (int) sqdb.insert("LISTTASKS", null, valuesListTask);
+
         //Modifico el id de la lista
         object.setIdListTask(idListTask);
-        //Modifico la clave unia de la lista
-        ListTasks listTasks = insertIdUnique(object);
 
-        return listTasks;
+        if (!isUnicol) {
+
+            //Modifico la clave unia de la lista
+            ListTasks listTasks = insertIdUnique(object);
+            return listTasks;
+        } else {
+            return object;
+        }
+
+
     }
 
     @Override

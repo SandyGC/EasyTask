@@ -38,7 +38,7 @@ public class ShareUser extends AsyncTask {
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog.setTitle("Buscando usuario");
-        progressDialog.setMessage("... :D :) :P");
+        progressDialog.setMessage("buscando...");
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);
         progressDialog.show();

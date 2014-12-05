@@ -58,7 +58,7 @@ public class ShareList extends AsyncTask {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progressDialog.setTitle("Compartiendo --->");
+        progressDialog.setTitle("Compartiendo");
         progressDialog.setMessage("...");
         progressDialog.setCancelable(false);
         progressDialog.setIndeterminate(true);

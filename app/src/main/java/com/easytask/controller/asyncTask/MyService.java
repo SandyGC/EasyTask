@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.easytask.controller.interfaceFragment.CheckConection;
 import com.easytask.dao.InterfacesDAO.IListTaskDao;
 import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
@@ -53,20 +54,24 @@ public class MyService extends Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (listListTask.size() == 0) {
-            this.onDestroy();
-        } else {
-            for (int i = 0; i < listListTask.size(); i++) {
+        if (CheckConection.verificaConexion(this.getApplicationContext()) & CheckConection.executeCammand()) {
+            if (listListTask.size() == 0) {
+                this.onDestroy();
+            } else {
+                for (int i = 0; i < listListTask.size(); i++) {
 
-                UpData upData = new UpData(this.getApplicationContext(), listListTask.get(i));
-                upData.execute();
+                    UpData upData = new UpData(this.getApplicationContext(), listListTask.get(i));
+                    upData.execute();
 
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
+        } else {
+            this.onDestroy();
         }
     }
 

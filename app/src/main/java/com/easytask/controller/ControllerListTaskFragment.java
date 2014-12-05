@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.easytask.R;
 import com.easytask.adaptet.TaskAdapter;
@@ -213,7 +214,12 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
                 onFragmentInteraction(listTask, 1);
                 break;
             case R.id.action_shareListTask:
-                onFragmentInteraction(listTask, 2);
+                if (listTask.getUser().getNickNameUser().equals(user.getNickNameUser())) {
+                    onFragmentInteraction(listTask, 2);
+                } else {
+                    Toast.makeText(this.getActivity().getApplicationContext(), "No eres el administrador", Toast.LENGTH_SHORT).show();
+                }
+
                 break;
             case R.id.infoListTask:
                 onFragmentInteraction(listTask, 3);

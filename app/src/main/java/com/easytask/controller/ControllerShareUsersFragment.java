@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,7 @@ import java.util.List;
  * Use the {@link ControllerShareUsersFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ControllerShareUsersFragment extends Fragment {
+public class ControllerShareUsersFragment extends Fragment implements OnFragmentInteractionListener {
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,6 +68,7 @@ public class ControllerShareUsersFragment extends Fragment {
     //
     private UserDataBase userDataBase;
     private View v;
+
 
     /**
      * Use this factory method to create a new instance of
@@ -149,12 +151,12 @@ public class ControllerShareUsersFragment extends Fragment {
                     Group group = new Group("Sin nombre");
                     group.getParticipants().add(user);
                     group.getParticipants().add(userList.get(position));
-                    ShareList shareList = new ShareList(v.getContext(), group, listTasks);
+                    ShareList shareList = new ShareList(controllerShareUsersFragment, v.getContext(), group, listTasks);
                     shareList.execute(0);
                 } else {
                     Group group = listTasks.getGroup();
                     group.getParticipants().add(userList.get(position));
-                    ShareList shareList = new ShareList(v.getContext(), group, listTasks);
+                    ShareList shareList = new ShareList(controllerShareUsersFragment, v.getContext(), group, listTasks);
                     shareList.execute(1);
                 }
 
@@ -195,5 +197,17 @@ public class ControllerShareUsersFragment extends Fragment {
     public void addUser(User user) {
         userList.add(user);
         userAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onFragmentInteraction(Object o, int number) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("listTask", listTasks);
+        bundle.putParcelable("user", user);
+        Fragment fragment = new ControllerListTaskFragment().newInstance(bundle);
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
+        InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
 }

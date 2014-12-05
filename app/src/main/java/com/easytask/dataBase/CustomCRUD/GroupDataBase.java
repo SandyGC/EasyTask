@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.easytask.dataBase.CRUD;
 import com.easytask.dataBase.CreateDataBase;
 import com.easytask.modelo.Group;
+import com.easytask.modelo.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,16 +40,19 @@ public class GroupDataBase implements CRUD<Group> {
     //obteniendo la base de datos con permiso de escritura y la
     //guardo en una variable de tipo sqlitedatabase
     private SQLiteDatabase sqdb;
+    private UserGroupDataBase userGroupDataBase;
 
     public GroupDataBase(Context context) {
         this.context = context;
         this.db = CreateDataBase.getInstance(this.context);
         this.sqdb = db.getWritableDatabase();
+        this.userGroupDataBase = new UserGroupDataBase(context);
     }
 
     @Override
     public Group insert(Group object) throws Exception {
         ContentValues contentValues = new ContentValues();
+        contentValues.put("id_Group", object.getIdGroup());
         contentValues.put("nameGroup", object.getNameGroup());
         contentValues.put("id_UnicoG", object.getId_UnicoG());
         int id_Group = (int) sqdb.insert("GROUPS", null, contentValues);
@@ -61,12 +65,15 @@ public class GroupDataBase implements CRUD<Group> {
     public Group read(int id) throws Exception {
 
         Group group = null;
+        List<User> userList = null;
         if (sqdb != null) {
 
             Cursor cursor = sqdb.rawQuery("SELECT * FROM GROUPS WHERE id_Group = " + id, null);
 
             if (cursor.moveToFirst()) {
-                group = new Group(cursor.getInt(0), cursor.getString(1), cursor.getString(1));
+                group = new Group(cursor.getInt(0), cursor.getString(1), cursor.getString(2));
+                userList = userGroupDataBase.getAllForIdGroup(cursor.getInt(0));
+                group.setParticipants(userList);
             }
 
         }

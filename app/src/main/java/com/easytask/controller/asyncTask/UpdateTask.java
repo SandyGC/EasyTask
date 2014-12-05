@@ -39,7 +39,7 @@ public class UpdateTask extends AsyncTask {
         boolean save = false;
         try {
             iListTaskDao.update(this.listTasks);
-            iTaskDao.updateAllForList(this.listTasks);
+//            iTaskDao.updateAllForList(this.listTasks);
         } catch (Exception e) {
             e.printStackTrace();
         }

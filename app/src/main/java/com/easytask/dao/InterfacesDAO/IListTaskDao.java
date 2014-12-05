@@ -23,5 +23,5 @@ import com.easytask.modelo.ListTasks;
  * Created by sandy on 18/11/14.
  */
 public interface IListTaskDao extends DataAccesObject<ListTasks> {
-    public Object updateID_Group(ListTasks listTasks) throws Exception;
+    public ListTasks updateID_Group(ListTasks listTasks) throws Exception;
 }

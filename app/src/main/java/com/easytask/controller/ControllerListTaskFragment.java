@@ -262,11 +262,5 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
         fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
     }
 
-    /**
-     * Called when the fragment is visible to the user and actively running.
-     * This is generally
-     * tied to {@link android.app.Activity#onResume() Activity.onResume} of the containing
-     * Activity's lifecycle.
-     */
 
 }

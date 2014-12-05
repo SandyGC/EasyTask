@@ -32,6 +32,7 @@ import android.widget.ListView;
 
 import com.easytask.R;
 import com.easytask.adaptet.TaskAdapter;
+import com.easytask.controller.asyncTask.UpData;
 import com.easytask.controller.asyncTask.UpdateTask;
 import com.easytask.controller.customListener.OnClickNewTask;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
@@ -191,6 +192,9 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         task.setListTasks(listTasks);
         user.addTask(listTasks, task);
 
+        UpdateTask updateTask = new UpdateTask(this, this.getActivity().getApplicationContext(), listTasks);
+        updateTask.execute();
+
         saveTask(task);
         taskAdapter.notifyDataSetChanged();
         listTaskView.setSelection(listTasks.getTasks().size() - 1);
@@ -240,6 +244,8 @@ public class ControllerNewListTaskFragmet extends Fragment implements OnFragment
         switch (id) {
             case R.id.action_share:
                 onFragmentInteraction(null, 0);
+                UpData upData = new UpData(this.getActivity().getApplicationContext(), listTasks);
+                upData.execute();
                 break;
             case R.id.action_save:
                 if (listTasks.getIdListTask() != 0) {

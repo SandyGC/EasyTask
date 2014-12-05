@@ -49,6 +49,7 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
 
     private UserDataBase userDataBase;
     private GroupDataBase groupDataBase;
+    private TaskDataBase taskDataBase;
 
     public ListTaskDataBase(Context context) {
         this.context = context;
@@ -56,6 +57,7 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         sqdb = db.getWritableDatabase();
         userDataBase = new UserDataBase(context);
         groupDataBase = new GroupDataBase(context);
+        taskDataBase = new TaskDataBase(context);
     }
 
 //    public void datosEjemlo() throws Exception {
@@ -186,6 +188,14 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         contentValues.put("status_share", object.getStatus_share());
         contentValues.put("status", object.getStatusList().toString());
         contentValues.put("id_UnicoL", object.getId_UnicoL());
+
+        if (object.getGroup() != null) {
+            contentValues.put("id_Group", object.getGroup().getIdGroup());
+        } else {
+            contentValues.putNull("id_Group");
+        }
+
+        contentValues.put("id_User", object.getUser().getIdUser());
         contentValues.put("status_server", object.getStatus_server());
         int numColums = sqdb.update("LISTTASKS", contentValues, "id_List = " + object.getIdListTask(), null);
 
@@ -327,6 +337,45 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         contentValues.put("id_UnicoL", id_unicoL);
         int numColums = sqdb.update("LISTTASKS", contentValues, "id_List = " + listTasks.getIdListTask(), null);
         listTasks.setId_UnicoL(id_unicoL);
+        return listTasks;
+    }
+
+    public ListTasks readForIDUnico(String id_UnicoL) throws Exception {
+        ListTasks listTasks = null;
+        if (sqdb != null) {
+
+            Cursor cursor = sqdb.rawQuery("select * from LISTTASKS  where id_UnicoL = '" + id_UnicoL + "'", null);
+            if (cursor.moveToFirst()) {
+
+                int idListTask = cursor.getInt(0);
+                String tittle = cursor.getString(1);
+                String dateList = cursor.getString(2);
+                int status = cursor.getInt(3);
+
+
+                String id_unicoG = cursor.getString(5);
+                int idGroup = cursor.getInt(6);
+                Group group = null;
+                if (idGroup != 0) {
+                    group = groupDataBase.read(idGroup);
+
+                }
+                int idUser = cursor.getInt(7);
+                int statusServer = cursor.getInt(8);
+                User user = userDataBase.read(idUser);
+
+                //Se coruye el objet ListTask y se le modifica el grupo sea null o no
+                listTasks = new ListTasks(idListTask, tittle, dateList, status, StatusList.Creada, id_unicoG, user, statusServer);
+                listTasks.setGroup(group);
+
+                List<Task> tasks = taskDataBase.getAllFromListTask(listTasks);
+                listTasks.setTasks(tasks);
+
+                StatusList statusList = listTasks.getValuesStatusList(cursor.getInt(4));
+
+                listTasks.setStatusList(statusList);
+            }
+        }
         return listTasks;
     }
 }

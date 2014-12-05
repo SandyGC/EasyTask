@@ -17,10 +17,8 @@ package com.easytask.controller;
  */
 
 import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
-import android.text.StaticLayout;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -116,9 +114,14 @@ public class ControllerInfoListTaskFragment extends Fragment {
 
         statusTask.setText(listTasks.getStatusList().toString());
 
-        List<User> userList = new ArrayList<User>();
+        List<User> userList = null;
 
-        userList.add(user);
+        if (listTasks.getGroup() != null) {
+            userList = listTasks.getGroup().getParticipants();
+        } else {
+            userList = new ArrayList<User>();
+            userList.add(user);
+        }
 
         UserAdapter userAdapter = new UserAdapter(this, userList);
 

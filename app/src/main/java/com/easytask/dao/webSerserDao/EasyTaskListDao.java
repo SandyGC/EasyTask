@@ -131,7 +131,7 @@ public class EasyTaskListDao implements IListTaskDao {
 
 
     @Override
-    public Object updateID_Group(ListTasks listTasks) throws Exception {
+    public ListTasks updateID_Group(ListTasks listTasks) throws Exception {
         String url = URLEncoder.encode(listTasks.getId_UnicoL(), "UTF-8");
         String url1 = URLEncoder.encode(String.valueOf(listTasks.getGroup().getIdGroup()), "UTF-8");
 

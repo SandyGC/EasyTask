@@ -1,4 +1,4 @@
-package com.easytask.dao.webSerserDao;
+package com.easytask.dao.webServerDao;
 
 import com.easytask.dao.InterfacesDAO.IUserGroupDao;
 import com.easytask.modelo.UserGroup;
@@ -26,8 +26,9 @@ public class EasyTaskUserGroupDao implements IUserGroupDao {
         String url = URLEncoder.encode(String.valueOf(object.getAdmin()), "UTF-8");
         String url1 = URLEncoder.encode(object.getUser().getNickNameUser(), "UTF-8");
         String url2 = URLEncoder.encode(String.valueOf(object.getGroup().getIdGroup()), "UTF-8");
+        String url3 = URLEncoder.encode(String.valueOf(object.getGroup().getParticipants().get(0).getNickNameUser()));
 
-        HttpPost httpPost = new HttpPost(URL + "group/insertusergroup/" + url + "/" + url1 + "/" + url2);
+        HttpPost httpPost = new HttpPost(URL + "group/insertusergroup/" + url + "/" + url1 + "/" + url2 + "/" + url3);
         //Preparamos la respuesta del server
         HttpResponse response = httpClient.execute(httpPost);
         //Recuperamos el codigo de la respuesta

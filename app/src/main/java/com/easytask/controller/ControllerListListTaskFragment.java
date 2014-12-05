@@ -33,6 +33,7 @@ import com.easytask.controller.asyncTask.MyService;
 import com.easytask.controller.customListener.OnItemLongClickListenerListView;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
+import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.ListTasks;
 import com.easytask.modelo.Task;
 import com.easytask.modelo.User;
@@ -58,6 +59,7 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
     private ArrayList<Task> listTaks, listTaks2;
     private List<ListTasks> listListTasks;
     private ListTaskAdapter listTaskAdapter;
+    private UserDataBase userDataBase;
 
     private User user;
 
@@ -99,7 +101,13 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
         View v = inflater.inflate(R.layout.fragment_controller_list_list_task, container, false);
         listListTaskView = (ListView) v.findViewById(R.id.listListTask);
 
+        userDataBase = new UserDataBase(this.getActivity().getApplicationContext());
+
         user = getActivity().getIntent().getParcelableExtra("usuario");
+
+        if (user == null) {
+            user = userDataBase.existPassword();
+        }
 
         listTaskDataBase = new ListTaskDataBase(getActivity().getApplicationContext());
 

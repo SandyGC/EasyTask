@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 
 import com.easytask.controller.ControllerShareUsersFragment;
 import com.easytask.dao.InterfacesDAO.IUserDao;
-import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
+import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
 

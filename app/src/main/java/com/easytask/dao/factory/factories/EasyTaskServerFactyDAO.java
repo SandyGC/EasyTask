@@ -14,7 +14,7 @@
  limitations under the License.
  */
 
-package com.easytask.dao.factory.fatories;
+package com.easytask.dao.factory.factories;
 
 import com.easytask.dao.InterfacesDAO.IGroupDao;
 import com.easytask.dao.InterfacesDAO.IListTaskDao;
@@ -22,11 +22,11 @@ import com.easytask.dao.InterfacesDAO.ITaskDao;
 import com.easytask.dao.InterfacesDAO.IUserDao;
 import com.easytask.dao.InterfacesDAO.IUserGroupDao;
 import com.easytask.dao.factory.FactoryDAO;
-import com.easytask.dao.webSerserDao.EasyTaskGroupDao;
-import com.easytask.dao.webSerserDao.EasyTaskListDao;
-import com.easytask.dao.webSerserDao.EasyTaskTaskDao;
-import com.easytask.dao.webSerserDao.EasyTaskUserDao;
-import com.easytask.dao.webSerserDao.EasyTaskUserGroupDao;
+import com.easytask.dao.webServerDao.EasyTaskGroupDao;
+import com.easytask.dao.webServerDao.EasyTaskListDao;
+import com.easytask.dao.webServerDao.EasyTaskTaskDao;
+import com.easytask.dao.webServerDao.EasyTaskUserDao;
+import com.easytask.dao.webServerDao.EasyTaskUserGroupDao;
 
 /**
  * Created by danny on 18/11/14.

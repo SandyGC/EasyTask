@@ -6,7 +6,7 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import com.easytask.dao.InterfacesDAO.IListTaskDao;
-import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
+import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.modelo.ListTasks;
 

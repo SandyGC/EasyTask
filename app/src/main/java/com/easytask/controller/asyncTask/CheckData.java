@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.easytask.controller.ControllerSingIn;
 import com.easytask.dao.InterfacesDAO.IUserDao;
-import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
+import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.modelo.User;
 
 /**

@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import com.easytask.controller.ControllerNewListTaskFragmet;
 import com.easytask.dao.InterfacesDAO.IListTaskDao;
 import com.easytask.dao.InterfacesDAO.ITaskDao;
-import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
+import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.TaskDataBase;
 import com.easytask.modelo.ListTasks;
 

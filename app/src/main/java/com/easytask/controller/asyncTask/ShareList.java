@@ -8,7 +8,7 @@ import com.easytask.controller.ControllerShareUsersFragment;
 import com.easytask.dao.InterfacesDAO.IGroupDao;
 import com.easytask.dao.InterfacesDAO.IListTaskDao;
 import com.easytask.dao.InterfacesDAO.IUserGroupDao;
-import com.easytask.dao.factory.gestorFatoriesDAO.GestorFactoryDAO;
+import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.GroupDataBase;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.dataBase.CustomCRUD.UserGroupDataBase;

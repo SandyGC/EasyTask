@@ -343,8 +343,8 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
     public ListTasks readForIDUnico(String id_UnicoL) throws Exception {
         ListTasks listTasks = null;
         if (sqdb != null) {
-
-            Cursor cursor = sqdb.rawQuery("select * from LISTTASKS  where id_UnicoL = '" + id_UnicoL + "'", null);
+            String[] args = new String[]{id_UnicoL};
+            Cursor cursor = sqdb.rawQuery("select * from LISTTASKS  WHERE id_UnicoL = ?", args);
             if (cursor.moveToFirst()) {
 
                 int idListTask = cursor.getInt(0);

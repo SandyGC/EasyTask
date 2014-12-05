@@ -1,4 +1,4 @@
-package com.easytask.dao.webSerserDao;
+package com.easytask.dao.webServerDao;
 
 import android.util.Log;
 

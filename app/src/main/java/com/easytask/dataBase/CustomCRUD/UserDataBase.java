@@ -88,6 +88,8 @@ public class UserDataBase implements CRUD<User> {
             if (cursor.moveToFirst()) {
 
                 user = new User(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+                user.setPasswordUser(cursor.getString(4));
+                user.setIdUserGCM(cursor.getString(5));
 
             }
 

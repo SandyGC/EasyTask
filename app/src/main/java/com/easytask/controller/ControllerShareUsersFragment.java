@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.easytask.R;
 import com.easytask.adaptet.UserAdapter;
@@ -154,10 +155,18 @@ public class ControllerShareUsersFragment extends Fragment implements OnFragment
                     ShareList shareList = new ShareList(controllerShareUsersFragment, v.getContext(), group, listTasks);
                     shareList.execute(0);
                 } else {
+
                     Group group = listTasks.getGroup();
-                    group.getParticipants().add(userList.get(position));
-                    ShareList shareList = new ShareList(controllerShareUsersFragment, v.getContext(), group, listTasks);
-                    shareList.execute(1);
+
+                    if (isShare(group.getParticipants(), userList.get(position))) {
+                        Toast.makeText(v.getContext(), "Ya has compartido con este usuario", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        group.getParticipants().add(userList.get(position));
+                        ShareList shareList = new ShareList(controllerShareUsersFragment, v.getContext(), group, listTasks);
+                        shareList.execute(1);
+                    }
+
                 }
 
             }
@@ -209,5 +218,17 @@ public class ControllerShareUsersFragment extends Fragment implements OnFragment
         fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
         InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public boolean isShare(List<User> participants, User user) {
+        boolean share = false;
+
+        for (int i = 0; i < participants.size(); i++) {
+            if (participants.get(i).getNickNameUser().equals(user.getNickNameUser())) {
+                share = true;
+            }
+        }
+
+        return share;
     }
 }

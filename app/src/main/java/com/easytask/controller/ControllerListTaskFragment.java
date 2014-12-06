@@ -194,7 +194,7 @@ public class ControllerListTaskFragment extends Fragment implements OnFragmentIn
 
         textViewTittle.setText(listTask.getTitle());
 
-        listTask.setUser(user);
+        // listTask.setUser(user);
     }
 
 

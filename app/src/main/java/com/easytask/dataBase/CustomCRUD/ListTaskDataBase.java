@@ -356,6 +356,109 @@ public class ListTaskDataBase implements CRUD<ListTasks> {
         return listTasks;
     }
 
+    public List<ListTasks> getAllWhereStatusShare() throws Exception {
+
+        List listListTask = new ArrayList();
+
+        Cursor cursor = sqdb.rawQuery("SELECT * FROM LISTTASKS WHERE status_share = 1", null);
+
+        TaskDataBase taskDataBase = new TaskDataBase(context);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+
+
+                int idListTask = cursor.getInt(0);
+                String tittle = cursor.getString(1);
+                String dateList = cursor.getString(2);
+                int status = cursor.getInt(3);
+
+
+                String id_unicoG = cursor.getString(5);
+                int idGroup = cursor.getInt(6);
+                Group group = null;
+                if (idGroup != 0) {
+                    group = groupDataBase.read(idGroup);
+
+                }
+                int idUser = cursor.getInt(7);
+                int statusServer = cursor.getInt(8);
+                User user = userDataBase.read(idUser);
+
+                //Se coruye el objet ListTask y se le modifica el grupo sea null o no
+                ListTasks listTasks = new ListTasks(idListTask, tittle, dateList, status, StatusList.Creada, id_unicoG, user, statusServer);
+                listTasks.setGroup(group);
+
+                List<Task> tasks = taskDataBase.getAllFromListTask(listTasks);
+                listTasks.setTasks(tasks);
+
+                StatusList statusList = listTasks.getValuesStatusList(cursor.getInt(4));
+
+                listTasks.setStatusList(statusList);
+
+                listListTask.add(listTasks);
+
+            } while (cursor.moveToNext());
+        }
+
+        return listListTask;
+    }
+
+    /**
+     * Devuelve las tareas que son mias y no estan compartidas
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<ListTasks> getAllWhereMines() throws Exception {
+
+        List listListTask = new ArrayList();
+
+        Cursor cursor = sqdb.rawQuery("SELECT * FROM LISTTASKS WHERE status_share = 0", null);
+
+        TaskDataBase taskDataBase = new TaskDataBase(context);
+
+
+        if (cursor.moveToFirst()) {
+            do {
+
+
+                int idListTask = cursor.getInt(0);
+                String tittle = cursor.getString(1);
+                String dateList = cursor.getString(2);
+                int status = cursor.getInt(3);
+
+
+                String id_unicoG = cursor.getString(5);
+                int idGroup = cursor.getInt(6);
+                Group group = null;
+                if (idGroup != 0) {
+                    group = groupDataBase.read(idGroup);
+
+                }
+                int idUser = cursor.getInt(7);
+                int statusServer = cursor.getInt(8);
+                User user = userDataBase.read(idUser);
+
+                //Se coruye el objet ListTask y se le modifica el grupo sea null o no
+                ListTasks listTasks = new ListTasks(idListTask, tittle, dateList, status, StatusList.Creada, id_unicoG, user, statusServer);
+                listTasks.setGroup(group);
+
+                List<Task> tasks = taskDataBase.getAllFromListTask(listTasks);
+                listTasks.setTasks(tasks);
+
+                StatusList statusList = listTasks.getValuesStatusList(cursor.getInt(4));
+
+                listTasks.setStatusList(statusList);
+
+                listListTask.add(listTasks);
+
+            } while (cursor.moveToNext());
+        }
+
+        return listListTask;
+    }
     public ListTasks readForIDUnico(String id_UnicoL) throws Exception {
         ListTasks listTasks = null;
         if (sqdb != null) {

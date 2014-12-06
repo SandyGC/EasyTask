@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import com.easytask.R;
 import com.easytask.controller.interfaceFragment.NavigationDrawerCallbacks;
 import com.easytask.controller.interfaceFragment.OnFragmentInteractionListener;
+import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.dataBase.CustomCRUD.UserDataBase;
 import com.easytask.modelo.User;
 
@@ -49,6 +50,7 @@ public class ControllerListListTask extends Activity
     private CharSequence mTitle;
 
     private UserDataBase userDataBase;
+    private ListTaskDataBase listTaskDataBase;
 
     private User user;
 
@@ -58,6 +60,7 @@ public class ControllerListListTask extends Activity
         setContentView(R.layout.activity_controller);
 
         userDataBase = new UserDataBase(this.getApplicationContext());
+        listTaskDataBase = new ListTaskDataBase(this.getApplicationContext());
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -158,6 +161,27 @@ public class ControllerListListTask extends Activity
             case R.id.newListTask:
                 onFragmentInteraction(null, 0);
                 break;
+            case R.id.orderShare:
+//                List<ListTasks> listTaskShare = null;
+//                try {
+//                   listTaskShare = listTaskDataBase.getAllWhereStatusShare();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                onFragmentInteraction(null, 1);
+                break;
+            case R.id.orderMyTask:
+//                List<ListTasks> listTaskMy = null;
+//                try {
+//                    listTaskShare = listTaskDataBase.getAllWhereStatusShare();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+                onFragmentInteraction(null, 2);
+                break;
+            case R.id.allTask:
+                onFragmentInteraction(null, 3);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -168,7 +192,27 @@ public class ControllerListListTask extends Activity
         Bundle bundle = new Bundle();
         bundle.putParcelable("user", this.user);
 
-        Fragment fragment = new ControllerNewListTaskFragmet().newInstance(bundle);
+        Fragment fragment = null;
+
+        switch (number) {
+            case 0:
+                fragment = new ControllerNewListTaskFragmet().newInstance(bundle);
+                break;
+            case 1:
+
+                bundle.putInt("list", 1);
+                fragment = new ControllerListListTaskFragment().newInstance(bundle);
+                break;
+            case 2:
+                bundle.putInt("list", 2);
+                fragment = new ControllerListListTaskFragment().newInstance(bundle);
+                break;
+            case 3:
+                fragment = new ControllerListListTaskFragment().newInstance(bundle);
+                break;
+        }
+
+
 
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
@@ -182,7 +226,7 @@ public class ControllerListListTask extends Activity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
+        this.finish();
     }
 
 

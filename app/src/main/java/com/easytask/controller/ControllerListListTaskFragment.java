@@ -75,6 +75,7 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
         ControllerListListTaskFragment fragment = new ControllerListListTaskFragment();
         Bundle args = new Bundle();
         args.putParcelable("usuario", bundle.getParcelable("usuario"));
+        args.putInt("list", bundle.getInt("list"));
         fragment.setArguments(args);
 
         return fragment;
@@ -104,6 +105,7 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
         userDataBase = new UserDataBase(this.getActivity().getApplicationContext());
 
         user = getActivity().getIntent().getParcelableExtra("usuario");
+        int typeList = getArguments().getInt("list");
 
         if (user == null) {
             user = userDataBase.existPassword();
@@ -113,11 +115,26 @@ public class ControllerListListTaskFragment extends Fragment implements OnFragme
 
         onItemLongClickListenerListView = new OnItemLongClickListenerListView(this);
 
-        try {
-            listListTasks = listTaskDataBase.getAll();
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (typeList == 1) {
+            try {
+                listListTasks = listTaskDataBase.getAllWhereStatusShare();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (typeList == 2) {
+            try {
+                listListTasks = listTaskDataBase.getAllWhereMines();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                listListTasks = listTaskDataBase.getAll();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
 
         listTaskAdapter = new ListTaskAdapter(this, listListTasks);
 

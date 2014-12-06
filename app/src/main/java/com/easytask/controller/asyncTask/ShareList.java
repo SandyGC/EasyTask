@@ -81,6 +81,7 @@ public class ShareList extends AsyncTask {
                         saveGroup.setParticipants(group.getParticipants());
                         listTasks.setGroup(saveGroup);
                         ListTasks listTasksSave = iListTaskDao.updateID_Group(listTasks);
+                        listTasksSave.setStatus_share(1);
                         listTaskDataBase.update(listTasksSave);
                         //
                         User userAdmin = group.getParticipants().get(0);

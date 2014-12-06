@@ -10,6 +10,8 @@ import com.easytask.dao.InterfacesDAO.IListTaskDao;
 import com.easytask.dao.factory.gestorFactoriesDAO.GestorFactoryDAO;
 import com.easytask.dataBase.CustomCRUD.ListTaskDataBase;
 import com.easytask.modelo.ListTasks;
+import com.easytask.modelo.Task;
+import com.easytask.modelo.emun.StatusList;
 
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class MyService extends Service {
 
     private ListTaskDataBase listTaskDataBase;
     private IListTaskDao iListTaskDao;
-    private List<ListTasks> listListTask;
+    private List<ListTasks> listListTask, listListTaskComple;
 
     private static MyService instance = null;
 
@@ -54,6 +56,23 @@ public class MyService extends Service {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            listListTaskComple = listTaskDataBase.getAll();
+            for (int i = 0; i < listListTaskComple.size(); i++) {
+                if (isComplet(listListTaskComple.get(i).getTasks())) {
+                    listListTaskComple.get(i).setStatusList(StatusList.Terminada);
+                    try {
+                        listTaskDataBase.update(listListTaskComple.get(i));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         if (CheckConection.verificaConexion(this.getApplicationContext()) & CheckConection.executeCammand()) {
             if (listListTask.size() == 0) {
                 this.onDestroy();
@@ -68,6 +87,7 @@ public class MyService extends Service {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
                 }
             }
         } else {
@@ -78,5 +98,16 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public boolean isComplet(List<Task> taks) {
+        boolean complet = true;
+        //int numTareas = taks.size();
+        for (int i = 0; i < taks.size(); i++) {
+            if (taks.get(i).getTaskDone() == 0) {
+                complet = false;
+            }
+        }
+        return complet;
     }
 }

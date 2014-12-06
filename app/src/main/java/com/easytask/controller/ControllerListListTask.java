@@ -194,28 +194,34 @@ public class ControllerListListTask extends Activity
 
         Fragment fragment = null;
 
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+
         switch (number) {
             case 0:
                 fragment = new ControllerNewListTaskFragmet().newInstance(bundle);
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
                 break;
             case 1:
 
                 bundle.putInt("list", 1);
                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
+
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
                 break;
             case 2:
                 bundle.putInt("list", 2);
                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
+
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
                 break;
             case 3:
                 fragment = new ControllerListListTaskFragment().newInstance(bundle);
+
+                fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
                 break;
         }
 
 
-
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack(null).commit();
     }
 
     /**
